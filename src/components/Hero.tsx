@@ -144,7 +144,8 @@ export default function Hero() {
               ))}
             </div>
             <p style={{ fontSize: 12, color: "var(--low)", marginTop: 16 }}>
-              Serving founders across 🇬🇧 🇩🇪 🇭🇺 🇳🇱 Europe
+              <span aria-hidden="true">🇬🇧 🇩🇪 🇭🇺 🇳🇱</span>
+              <span style={{ marginLeft: 8 }}>Serving founders across Europe</span>
             </p>
           </motion.div>
         </motion.div>
@@ -215,18 +216,20 @@ export default function Hero() {
       </div>
 
       <button
-        className="lx-bounce"
+        className="lx-bounce hidden lg:inline-flex"
         onClick={() => scrollToSection("services")}
         aria-label="Scroll to services"
         style={{
           position: "absolute",
-          bottom: 24,
+          bottom: 16,
           left: "50%",
+          transform: "translateX(-50%)",
           background: "transparent",
           border: "none",
           color: "var(--low)",
           cursor: "pointer",
-          padding: 6,
+          padding: 8,
+          zIndex: 2,
         }}
       >
         <ChevronDown size={20} />
