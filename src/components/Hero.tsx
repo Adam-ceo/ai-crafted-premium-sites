@@ -1,12 +1,10 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ArrowDown } from "lucide-react";
 import { Container, Eyebrow, NumberDisplay, Text } from "./ui/primitives";
 import { useMagnetic } from "@/hooks/useMagnetic";
 import { useLineReveal } from "@/lib/gsap";
 import { scrollToId } from "@/lib/scroll";
-
-const PaperShader = lazy(() => import("./canvas/PaperShader"));
 
 const ROTATING = ["websites.", "landing pages.", "portfolios.", "stores."];
 
@@ -80,12 +78,16 @@ export default function Hero() {
       aria-labelledby="hero-heading"
       className="relative min-h-[100svh] flex flex-col pt-[var(--nav-h)] pb-12 overflow-hidden"
     >
-      {/* Animated paper shader background */}
-      {!reduced && (
-        <Suspense fallback={null}>
-          <PaperShader />
-        </Suspense>
-      )}
+      {/* Soft paper-like background wash (CSS — shader v2 in next phase) */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 50% at 78% 22%, hsl(var(--accent) / 0.10) 0%, transparent 60%), radial-gradient(ellipse 60% 60% at 20% 80%, hsl(var(--hairline) / 0.6) 0%, transparent 70%), hsl(var(--background))",
+        }}
+      />
+      {!reduced && <div aria-hidden className="absolute inset-0 -z-10 opacity-40" style={{ background: "radial-gradient(circle at 50% 0%, hsl(var(--accent)/0.06), transparent 50%)" }} /> }
 
       {/* Faint editorial grid overlay */}
       <div
