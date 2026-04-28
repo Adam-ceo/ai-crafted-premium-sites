@@ -337,6 +337,31 @@ export default function Nav() {
             >
               Start a project <ArrowRight size={14} />
             </motion.button>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.07 * links.length + 0.15, duration: 0.3 }}
+              className="flex items-center gap-2 mt-2"
+            >
+              <span
+                className="lx-pulse"
+                style={{
+                  width: 6, height: 6, borderRadius: "50%",
+                  background: "var(--gold)",
+                  display: "inline-block",
+                }}
+                aria-hidden="true"
+              />
+              <span style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: 10,
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "var(--low)",
+              }}>
+                Available for new projects
+              </span>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
