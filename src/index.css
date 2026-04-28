@@ -8,6 +8,8 @@
 
 @layer base {
   :root {
+    color-scheme: dark;
+
     /* Backgrounds */
     --bg: #0A0A0A;
     --surface: #111111;
@@ -64,6 +66,7 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
