@@ -346,3 +346,26 @@
   50%, 100% { opacity: 0; }
 }
 .cursor-blink { animation: cursorBlink 1s step-end infinite; }
+
+/* ============================================
+   GLOBAL POLISH
+   ============================================ */
+button { font-family: 'Manrope', system-ui, sans-serif; }
+button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
+
+a { color: inherit; }
+
+/* Native form controls inherit dark scheme */
+input, textarea, select { color-scheme: dark; }
+select option { background: var(--elevated); color: var(--text); }
+
+/* Image rendering */
+img, svg { max-width: 100%; display: block; }
+
+/* Anti-shift loading */
+html, body { min-height: 100%; }
+
+/* Prevent horizontal overflow on mobile */
+@media (max-width: 480px) {
+  body { font-size: 14px; }
+}
