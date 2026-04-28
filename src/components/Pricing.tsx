@@ -71,6 +71,7 @@ function PricingCard({ plan, index }: PricingCardProps) {
   return (
     <div
       ref={ref}
+      className={`pricing-card ${plan.featured ? "is-featured" : ""}`}
       style={{
         background: plan.featured ? "#141414" : "var(--card-bg)",
         border: plan.featured ? "1px solid rgba(201,168,76,0.30)" : "1px solid var(--border-c)",
@@ -83,23 +84,8 @@ function PricingCard({ plan, index }: PricingCardProps) {
         boxShadow: plan.featured ? "0 0 60px rgba(201,168,76,0.05)" : "none",
         opacity: inView ? 1 : 0,
         transform: inView ? "translateY(0)" : "translateY(24px)",
-        transition: `opacity 0.55s ease ${index * 0.08}s, transform 0.4s ease, border-color 0.25s ease, box-shadow 0.25s ease`,
-        cursor: "default",
-      }}
-      onMouseEnter={(e) => {
-        if (!inView) return;
-        e.currentTarget.style.transform = "translateY(-4px)";
-        e.currentTarget.style.boxShadow = plan.featured
-          ? "0 24px 64px rgba(201,168,76,0.12)"
-          : "0 16px 48px rgba(0,0,0,0.45)";
-        e.currentTarget.style.borderColor = plan.featured
-          ? "rgba(201,168,76,0.55)"
-          : "var(--border2)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = "translateY(0)";
-        e.currentTarget.style.boxShadow = plan.featured ? "0 0 60px rgba(201,168,76,0.05)" : "none";
-        e.currentTarget.style.borderColor = plan.featured ? "rgba(201,168,76,0.30)" : "var(--border-c)";
+        transition: `opacity 0.55s ease ${index * 0.08}s, transform 0.4s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease`,
+        willChange: "transform",
       }}
     >
       {plan.featured && (
