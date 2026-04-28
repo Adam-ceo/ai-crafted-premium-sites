@@ -41,8 +41,12 @@ export default function Nav() {
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [location.pathname]);
 
   useEffect(() => {
     if (!dropdownOpen) return;
@@ -277,8 +281,10 @@ export default function Nav() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden fixed inset-0 top-16 z-[99] flex flex-col items-center justify-center gap-8 px-6"
+            className="md:hidden fixed inset-x-0 z-[99] flex flex-col items-center justify-center gap-8 px-6"
             style={{
+              top: 64,
+              bottom: 0,
               background: "rgba(10,10,10,0.98)",
               backdropFilter: "blur(24px)",
               WebkitBackdropFilter: "blur(24px)",
