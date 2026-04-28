@@ -146,6 +146,12 @@ function StepItem({ step, index }: StepItemProps) {
           .step-item .step-grid > div {
             order: unset !important;
           }
+          .step-item .step-title-block { padding-top: 56px; }
+          .step-item .step-title-block > .badge-gold {
+            position: static !important;
+            display: inline-flex;
+            margin-bottom: 12px;
+          }
         }
       `}</style>
     </li>
