@@ -238,6 +238,15 @@ export default function Pricing() {
       </div>
 
       <style>{`
+        .pricing-card:hover {
+          transform: translateY(-4px) !important;
+          border-color: var(--border2) !important;
+          box-shadow: 0 16px 48px rgba(0,0,0,0.45) !important;
+        }
+        .pricing-card.is-featured:hover {
+          border-color: rgba(201,168,76,0.55) !important;
+          box-shadow: 0 24px 64px rgba(201,168,76,0.12) !important;
+        }
         @media (max-width: 900px) {
           .pricing-grid { grid-template-columns: 1fr !important; }
         }
