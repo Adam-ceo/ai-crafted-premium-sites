@@ -29,9 +29,8 @@ export default function Nav() {
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = menuOpen ? "hidden" : previousOverflow;
-    return () => { document.body.style.overflow = previousOverflow; };
+    document.body.classList.toggle("mobile-menu-open", menuOpen);
+    return () => document.body.classList.remove("mobile-menu-open");
   }, [menuOpen]);
 
   // Close everything on route change
