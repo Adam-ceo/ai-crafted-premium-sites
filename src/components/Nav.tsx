@@ -254,6 +254,7 @@ export default function Nav() {
         {/* ── Mobile: hamburger only ── */}
         <button
           className="md:hidden"
+          type="button"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label={menuOpen ? "Close navigation" : "Open navigation"}
           aria-expanded={menuOpen}
@@ -261,15 +262,18 @@ export default function Nav() {
           style={{
             width: 44,
             height: 44,
+            position: "relative",
+            zIndex: 101,
             flexShrink: 0,
             display: "inline-flex",
             alignItems: "center",
             justifyContent: "center",
-            background: menuOpen ? "var(--elevated)" : "var(--elevated)",
+            background: menuOpen ? "var(--surface)" : "var(--elevated)",
             border: "1px solid var(--border-c)",
             borderRadius: 8,
             cursor: "pointer",
             color: "var(--text)",
+            touchAction: "manipulation",
             transition: "background 0.15s, border-color 0.15s",
           }}
         >
@@ -338,7 +342,7 @@ export default function Nav() {
                 flex: 1,
                 display: "flex",
                 flexDirection: "column",
-                padding: "8px 28px 0",
+                padding: "18px 28px 0",
                 paddingBottom: "max(40px, env(safe-area-inset-bottom))",
               }}
             >
@@ -407,7 +411,7 @@ export default function Nav() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.03 * NAV_LINKS.length + 0.08, duration: 0.22 }}
-                style={{ marginTop: 36, marginBottom: 8, display: "flex", flexDirection: "column", gap: 16 }}
+                style={{ marginTop: "auto", marginBottom: 8, display: "flex", flexDirection: "column", gap: 16, paddingTop: 36 }}
               >
                 <button
                   type="button"
