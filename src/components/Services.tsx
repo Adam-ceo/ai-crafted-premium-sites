@@ -141,8 +141,8 @@ function ServiceCard({ service, index }: ServiceCardProps) {
         </button>
       </div>
       <style>{`
-        .service-card:hover { background: #121212 !important; }
-        .service-card:hover .icon-box { border-color: rgba(201,168,76,0.35) !important; }
+        .service-card:hover { background: #F5F5F3 !important; }
+        .service-card:hover .icon-box { border-color: rgba(184,150,46,0.40) !important; }
       `}</style>
     </article>
   );
@@ -154,7 +154,8 @@ export default function Services() {
     <section
       id="services"
       aria-labelledby="services-heading"
-      style={{ padding: "120px 0", position: "relative" }}
+      className="section-pad"
+      style={{ position: "relative" }}
     >
       <div className="max-w-[1280px] mx-auto px-6 md:px-10">
         <div
@@ -216,11 +217,9 @@ export default function Services() {
       </div>
 
       <style>{`
-        @media (max-width: 768px) {
-          .services-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 520px) {
-          .services-grid { grid-template-columns: 1fr; }
+        @media (max-width: 640px) {
+          .services-grid { grid-template-columns: 1fr !important; }
+          .service-card { padding: 24px !important; }
         }
       `}</style>
     </section>

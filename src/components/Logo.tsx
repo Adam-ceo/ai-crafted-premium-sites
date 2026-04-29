@@ -16,12 +16,12 @@ export default function Logo({ size = 28 }: LogoProps) {
       >
         <path
           d="M5 7 L14 21 L23 7"
-          stroke="#C9A84C"
+          stroke="var(--gold)"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        <circle cx="14" cy="14" r="1.6" fill="#C9A84C" />
+        <circle cx="14" cy="14" r="1.6" fill="var(--gold)" />
       </svg>
       <span
         style={{
@@ -30,7 +30,7 @@ export default function Logo({ size = 28 }: LogoProps) {
           fontSize: 12,
           letterSpacing: "0.12em",
           textTransform: "uppercase",
-          color: "#F0F0F0",
+          color: "var(--text)",
         }}
       >
         LUXIFLOW

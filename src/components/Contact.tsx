@@ -144,7 +144,7 @@ export default function Contact() {
 
   const onFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     e.currentTarget.style.borderColor = "var(--gold)";
-    e.currentTarget.style.boxShadow = "0 0 0 3px rgba(201,168,76,0.10)";
+    e.currentTarget.style.boxShadow = "0 0 0 3px rgba(184,150,46,0.10)";
   };
   const onBlurStyle = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const fieldName = e.currentTarget.id.replace("contact-", "") as keyof FormState;
@@ -157,7 +157,7 @@ export default function Contact() {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      style={{ padding: "120px 0" }}
+      className="section-pad"
     >
       <div className="max-w-[1280px] mx-auto px-6 md:px-10">
         <div
@@ -249,7 +249,7 @@ export default function Contact() {
                 background: "var(--surface)",
                 border: "1px solid var(--border-c)",
                 borderRadius: 14,
-                padding: "44px 40px 48px",
+                padding: "clamp(28px, 5vw, 44px) clamp(22px, 5vw, 40px) clamp(32px, 5vw, 48px)",
                 display: "flex",
                 flexDirection: "column",
                 gap: 20,
@@ -320,7 +320,7 @@ export default function Contact() {
                     appearance: "none",
                     cursor: "pointer",
                     paddingRight: 44,
-                    backgroundImage: "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%234E4E4E' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>\")",
+                    backgroundImage: "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235A5A58' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>\")",
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "right 18px center",
                   }}
@@ -401,7 +401,7 @@ export default function Contact() {
                   >
                     {form.consent && (
                       <svg width="12" height="12" viewBox="0 0 18 18" fill="none">
-                        <path d="M2 9 L7 14 L16 4" stroke="#0A0A0A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M2 9 L7 14 L16 4" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     )}
                   </span>
