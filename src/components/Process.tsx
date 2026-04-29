@@ -42,115 +42,126 @@ const steps: Step[] = [
 interface StepItemProps {
   step: Step;
   index: number;
+  isLast: boolean;
 }
 
-function StepItem({ step, index }: StepItemProps) {
+function StepItem({ step, index, isLast }: StepItemProps) {
   const [ref, inView] = useInView<HTMLLIElement>();
-  const reversed = index % 2 === 1;
 
   return (
     <li
       ref={ref}
-      className="step-item"
+      className="process-step"
       style={{
+        display: "grid",
+        gridTemplateColumns: "64px 1fr",
+        gap: "0 40px",
         opacity: inView ? 1 : 0,
-        transform: inView ? "translateY(0)" : "translateY(24px)",
-        transition: `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`,
-        borderBottom: index < steps.length - 1 ? "1px solid var(--border-c)" : "none",
-        paddingBottom: 96,
-        marginBottom: index < steps.length - 1 ? 96 : 0,
+        transform: inView ? "translateY(0)" : "translateY(20px)",
+        transition: `opacity 0.6s ease ${index * 0.12}s, transform 0.6s ease ${index * 0.12}s`,
       }}
     >
+      {/* ── Left column: circle + connector line ── */}
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+        {/* Numbered circle */}
+        <div
+          style={{
+            width: 44,
+            height: 44,
+            borderRadius: "50%",
+            border: "2px solid rgba(184,150,46,0.35)",
+            background: "rgba(184,150,46,0.07)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: 12,
+            fontWeight: 700,
+            color: "var(--gold)",
+            flexShrink: 0,
+            position: "relative",
+            zIndex: 1,
+          }}
+        >
+          {step.n}
+        </div>
+
+        {/* Vertical connector — hidden on last step */}
+        {!isLast && (
+          <div
+            style={{
+              flex: 1,
+              width: 1,
+              background: "linear-gradient(to bottom, var(--border-c) 0%, transparent 100%)",
+              marginTop: 8,
+              minHeight: 48,
+            }}
+          />
+        )}
+      </div>
+
+      {/* ── Right column: content ── */}
       <div
-        className="step-grid"
         style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 72,
-          alignItems: "start",
+          paddingBottom: isLast ? 0 : 64,
+          paddingTop: 10,
         }}
       >
-        {/* Title block */}
+        {/* Step name row — title left, badge right */}
         <div
-          className="step-title-block"
-          style={{ position: "relative", order: reversed ? 2 : 1 }}
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "space-between",
+            gap: 16,
+            marginBottom: 14,
+            flexWrap: "wrap",
+          }}
         >
-          <span
-            className="badge-gold"
-            style={{
-              position: "absolute",
-              top: 0,
-              [reversed ? "left" : "right"]: 0,
-            } as React.CSSProperties}
-          >
-            {step.days}
-          </span>
-          <div
-            aria-hidden="true"
-            style={{
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: 72,
-              fontWeight: 300,
-              color: "#1A1A1A",
-              position: "absolute",
-              top: -8,
-              ...(reversed ? { right: -4 } : { left: -4 }),
-              lineHeight: 1,
-              pointerEvents: "none",
-              userSelect: "none",
-            }}
-          >
-            {step.n}
-          </div>
           <h3
             style={{
               fontFamily: "'Manrope', sans-serif",
-              fontWeight: 600,
-              fontSize: "clamp(20px, 2.5vw, 28px)",
+              fontWeight: 700,
+              fontSize: "clamp(18px, 2.2vw, 24px)",
               color: "var(--text)",
-              lineHeight: 1.25,
-              marginTop: 50,
-              letterSpacing: "-0.01em",
-              position: "relative",
-              zIndex: 1,
+              lineHeight: 1.2,
+              letterSpacing: "-0.02em",
+              margin: 0,
             }}
           >
             {step.name}
           </h3>
+          <span className="badge-gold" style={{ flexShrink: 0, marginTop: 3 }}>
+            {step.days}
+          </span>
         </div>
 
-        {/* Description block */}
-        <div style={{ paddingTop: 4, order: reversed ? 1 : 2 }}>
-          <p className="body-lg" style={{ marginBottom: 16 }}>{step.desc}</p>
-          <p
-            style={{
-              fontSize: 13,
-              color: "var(--low)",
-              lineHeight: 1.7,
-              borderLeft: "2px solid var(--border-g)",
-              paddingLeft: 16,
-              fontStyle: "italic",
-            }}
-          >
-            {step.detail}
-          </p>
-        </div>
+        {/* Description */}
+        <p className="body-lg" style={{ marginBottom: 16 }}>
+          {step.desc}
+        </p>
+
+        {/* Detail note */}
+        <p
+          style={{
+            fontSize: 13,
+            color: "var(--low)",
+            lineHeight: 1.7,
+            borderLeft: "2px solid var(--border-g)",
+            paddingLeft: 14,
+            fontStyle: "italic",
+            margin: 0,
+          }}
+        >
+          {step.detail}
+        </p>
       </div>
+
       <style>{`
-        @media (max-width: 768px) {
-          .step-item .step-grid {
-            grid-template-columns: 1fr !important;
-            gap: 24px !important;
-          }
-          .step-item .step-title-block,
-          .step-item .step-grid > div {
-            order: unset !important;
-          }
-          .step-item .step-title-block { padding-top: 56px; }
-          .step-item .step-title-block > .badge-gold {
-            position: static !important;
-            display: inline-flex;
-            margin-bottom: 12px;
+        @media (max-width: 640px) {
+          .process-step {
+            grid-template-columns: 40px 1fr !important;
+            gap: 0 24px !important;
           }
         }
       `}</style>
@@ -164,48 +175,69 @@ export default function Process() {
     <section
       id="process"
       aria-labelledby="process-heading"
-      style={{ padding: "120px 0", position: "relative" }}
+      className="section-pad"
+      style={{ position: "relative" }}
     >
       <div className="max-w-[1280px] mx-auto px-6 md:px-10">
+        {/* Section header */}
         <div
           ref={ref}
           style={{
-            marginBottom: 80,
-            maxWidth: 560,
+            marginBottom: 72,
             opacity: inView ? 1 : 0,
             transform: inView ? "translateY(0)" : "translateY(24px)",
             transition: "all 0.55s ease",
           }}
         >
           <p className="section-label" style={{ marginBottom: 14 }}>How it works</p>
-          <h2
-            id="process-heading"
+          <div
             style={{
-              fontFamily: "'Manrope', sans-serif",
-              fontWeight: 600,
-              fontSize: "clamp(28px, 4vw, 44px)",
-              lineHeight: 1.15,
-              letterSpacing: "-0.02em",
-              color: "var(--text)",
-              marginBottom: 18,
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 48,
+              alignItems: "end",
             }}
+            className="process-header-grid"
           >
-            From brief to live
-            <br />
-            in 14 days.
-          </h2>
-          <p className="body-lg" style={{ maxWidth: 400 }}>
-            A lean, repeatable process designed to eliminate the delays that
-            plague traditional agencies.
-          </p>
+            <h2
+              id="process-heading"
+              style={{
+                fontFamily: "'Manrope', sans-serif",
+                fontWeight: 700,
+                fontSize: "clamp(28px, 4vw, 48px)",
+                lineHeight: 1.1,
+                letterSpacing: "-0.03em",
+                color: "var(--text)",
+                margin: 0,
+              }}
+            >
+              From brief
+              <br />
+              to live in 14 days.
+            </h2>
+            <p className="body-lg" style={{ margin: 0 }}>
+              A lean, repeatable process designed to eliminate the delays that
+              plague traditional agencies — without cutting corners on craft.
+            </p>
+          </div>
         </div>
 
+        {/* Timeline */}
         <ol style={{ listStyle: "none", padding: 0, margin: 0 }}>
           {steps.map((s, i) => (
-            <StepItem key={s.n} step={s} index={i} />
+            <StepItem key={s.n} step={s} index={i} isLast={i === steps.length - 1} />
           ))}
         </ol>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .process-header-grid {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Terminal from "./Terminal";
 import { scrollToSection } from "@/hooks/useScrollTo";
 
@@ -103,7 +103,7 @@ export default function Hero() {
             transition={{ duration: 0.5 }}
             style={{ borderTop: "1px solid var(--border-c)", paddingTop: 20, marginTop: 8 }}
           >
-            <div className="flex items-center" style={{ gap: 28 }}>
+            <div className="flex items-center" style={{ gap: 28, flexWrap: "wrap", rowGap: 16 }}>
               {[
                 { n: "14", u: "days", l: "average delivery" },
                 { n: "€1.5k", u: "", l: "starting price" },
@@ -139,14 +139,10 @@ export default function Hero() {
                       {s.l}
                     </div>
                   </div>
-                  {i < 2 && <span style={{ width: 1, height: 28, background: "var(--border-c)" }} />}
+                  {i < 2 && <span className="hero-stat-divider" style={{ width: 1, height: 28, background: "var(--border-c)" }} />}
                 </div>
               ))}
             </div>
-            <p style={{ fontSize: 12, color: "var(--low)", marginTop: 16 }}>
-              <span aria-hidden="true">🇬🇧 🇩🇪 🇭🇺 🇳🇱</span>
-              <span style={{ marginLeft: 8 }}>Serving founders across Europe</span>
-            </p>
           </motion.div>
         </motion.div>
 
@@ -215,26 +211,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <button
-        className="lx-bounce hidden lg:inline-flex"
-        onClick={() => scrollToSection("services")}
-        aria-label="Scroll to services"
-        style={{
-          position: "absolute",
-          bottom: 16,
-          left: "50%",
-          transform: "translateX(-50%)",
-          background: "transparent",
-          border: "none",
-          color: "var(--low)",
-          cursor: "pointer",
-          padding: 8,
-          zIndex: 2,
-        }}
-      >
-        <ChevronDown size={20} />
-      </button>
-
       <style>{`
         .hero-grid {
           display: grid;
@@ -244,6 +220,9 @@ export default function Hero() {
         }
         @media (max-width: 900px) {
           .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+        }
+        @media (max-width: 480px) {
+          .hero-stat-divider { display: none !important; }
         }
       `}</style>
     </section>

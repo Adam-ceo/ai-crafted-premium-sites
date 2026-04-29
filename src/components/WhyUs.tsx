@@ -21,7 +21,7 @@ const items: Item[] = [
   {
     n: "03",
     title: "Fixed scope, fixed price.",
-    desc: "We scope your project upfront and stick to it. No \u2018just one more change\u2019 invoices. No scope creep.",
+    desc: "We scope your project upfront and stick to it. No 'just one more change' invoices. No scope creep.",
   },
   {
     n: "04",
@@ -38,64 +38,79 @@ interface WhyItemProps {
 function WhyItem({ item, index }: WhyItemProps) {
   const [ref, inView] = useInView<HTMLDivElement>();
   const [hover, setHover] = useState(false);
+
   return (
     <div
       ref={ref}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
-        background: "#0A0A0A",
-        padding: "40px 36px",
+        background: "var(--surface)",
+        padding: "36px 32px",
         position: "relative",
         overflow: "hidden",
         opacity: inView ? 1 : 0,
-        transform: inView ? "translateY(0)" : "translateY(24px)",
-        transition: `opacity 0.55s ease ${index * 0.08}s, transform 0.55s ease ${index * 0.08}s`,
+        transform: inView ? "translateY(0)" : "translateY(20px)",
+        transition: `opacity 0.55s ease ${index * 0.08}s, transform 0.55s ease ${index * 0.08}s, box-shadow 0.25s ease`,
+        boxShadow: hover ? "inset 0 0 0 1px rgba(184,150,46,0.20)" : "inset 0 0 0 1px transparent",
       }}
     >
+      {/* Hover gradient */}
       <div
         style={{
           position: "absolute",
           inset: 0,
-          background: "linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 60%)",
+          background: "linear-gradient(135deg, rgba(184,150,46,0.05) 0%, transparent 55%)",
           pointerEvents: "none",
           opacity: hover ? 1 : 0,
           transition: "opacity 0.3s ease",
         }}
       />
-      <div style={{ position: "relative", zIndex: 1 }}>
-        {/* Large ghost number — decorative, top-right */}
+
+      {/* Card content — number in its own fixed column, never overlapping text */}
+      <div style={{ position: "relative", zIndex: 1, display: "flex", gap: 24 }}>
+
+        {/* Number column — fixed width, clearly separated */}
         <div
-          aria-hidden
           style={{
-            position: "absolute",
-            top: -8,
-            right: -4,
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: 80,
-            color: "#161616",
-            lineHeight: 1,
-            userSelect: "none",
-            pointerEvents: "none",
+            flexShrink: 0,
+            width: 36,
+            paddingTop: 2,
           }}
         >
-          {item.n}
+          <span
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: 11,
+              fontWeight: 700,
+              color: "var(--gold)",
+              letterSpacing: "0.06em",
+              display: "block",
+            }}
+          >
+            {item.n}
+          </span>
         </div>
-        {/* Gold accent rule replaces the dim small number */}
-        <div style={{ width: 24, height: 1, background: "var(--gold)", opacity: 0.5, marginBottom: 22 }} />
-        <h3
-          style={{
-            fontFamily: "'Manrope', sans-serif",
-            fontWeight: 600,
-            fontSize: 17,
-            color: "var(--text)",
-            marginBottom: 12,
-            lineHeight: 1.3,
-          }}
-        >
-          {item.title}
-        </h3>
-        <p className="body-sm">{item.desc}</p>
+
+        {/* Content column */}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <h3
+            style={{
+              fontFamily: "'Manrope', sans-serif",
+              fontWeight: 700,
+              fontSize: 16,
+              color: "var(--text)",
+              marginBottom: 10,
+              lineHeight: 1.3,
+              letterSpacing: "-0.01em",
+            }}
+          >
+            {item.title}
+          </h3>
+          <p className="body-sm" style={{ margin: 0 }}>
+            {item.desc}
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -106,19 +121,20 @@ export default function WhyUs() {
   return (
     <section
       aria-labelledby="why-heading"
+      className="section-pad"
       style={{
-        padding: "120px 0",
-        background: "#0B0B0B",
+        background: "var(--elevated)",
         borderTop: "1px solid var(--border-c)",
         borderBottom: "1px solid var(--border-c)",
       }}
     >
       <div className="max-w-[1280px] mx-auto px-6 md:px-10">
+        {/* Header */}
         <div
           ref={headRef}
           style={{
             marginBottom: 56,
-            maxWidth: 460,
+            maxWidth: 520,
             opacity: headIn ? 1 : 0,
             transform: headIn ? "translateY(0)" : "translateY(24px)",
             transition: "all 0.55s ease",
@@ -129,17 +145,19 @@ export default function WhyUs() {
             id="why-heading"
             style={{
               fontFamily: "'Manrope', sans-serif",
-              fontWeight: 600,
+              fontWeight: 700,
               fontSize: "clamp(28px, 4vw, 44px)",
-              lineHeight: 1.15,
-              letterSpacing: "-0.02em",
+              lineHeight: 1.1,
+              letterSpacing: "-0.03em",
               color: "var(--text)",
+              margin: 0,
             }}
           >
             The honest difference.
           </h2>
         </div>
 
+        {/* 2×2 grid */}
         <div
           className="why-grid"
           style={{
@@ -149,6 +167,7 @@ export default function WhyUs() {
             background: "var(--border-c)",
             overflow: "hidden",
             borderRadius: 14,
+            boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
           }}
         >
           {items.map((it, i) => (

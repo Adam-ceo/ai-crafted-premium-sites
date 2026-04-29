@@ -13,7 +13,7 @@ interface Plan {
 
 const plans: Plan[] = [
   {
-    name: "STARTER",
+    name: "Starter",
     price: "€1,500",
     timeline: "7–10 days",
     features: [
@@ -28,7 +28,7 @@ const plans: Plan[] = [
     featured: false,
   },
   {
-    name: "PROFESSIONAL",
+    name: "Professional",
     price: "€3,500",
     timeline: "10–14 days",
     features: [
@@ -44,7 +44,7 @@ const plans: Plan[] = [
     featured: true,
   },
   {
-    name: "ENTERPRISE",
+    name: "Enterprise",
     price: "Custom",
     timeline: "Custom timeline",
     features: [
@@ -73,63 +73,107 @@ function PricingCard({ plan, index }: PricingCardProps) {
       ref={ref}
       className={`pricing-card ${plan.featured ? "is-featured" : ""}`}
       style={{
-        background: plan.featured ? "#141414" : "var(--card-bg)",
-        border: plan.featured ? "1px solid rgba(201,168,76,0.30)" : "1px solid var(--border-c)",
-        borderRadius: 14,
-        padding: "36px 30px",
+        background: plan.featured ? "#FEFDF7" : "var(--card-bg)",
+        border: plan.featured
+          ? "2px solid rgba(184,150,46,0.40)"
+          : "1px solid var(--border-c)",
+        borderRadius: 16,
+        padding: "32px 28px 28px",
         height: "100%",
         display: "flex",
         flexDirection: "column",
         position: "relative",
-        boxShadow: plan.featured ? "0 0 60px rgba(201,168,76,0.05)" : "none",
+        boxShadow: plan.featured
+          ? "0 8px 40px rgba(184,150,46,0.10), 0 2px 8px rgba(0,0,0,0.04)"
+          : "0 1px 4px rgba(0,0,0,0.04)",
         opacity: inView ? 1 : 0,
         transform: inView ? "translateY(0)" : "translateY(24px)",
-        transition: `opacity 0.55s ease ${index * 0.08}s, transform 0.4s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease`,
+        transition: `opacity 0.55s ease ${index * 0.08}s, transform 0.4s ease, border-color 0.25s ease, box-shadow 0.25s ease`,
         willChange: "transform",
       }}
     >
+      {/* Most Popular badge */}
       {plan.featured && (
         <span
           className="badge-gold"
           style={{
             position: "absolute",
-            top: -13,
+            top: -14,
             left: "50%",
             transform: "translateX(-50%)",
             fontSize: 9,
-            padding: "4px 14px",
-            background: "#0A0A0A",
+            padding: "4px 16px",
+            background: "var(--surface)",
+            whiteSpace: "nowrap",
+            boxShadow: "0 1px 6px rgba(0,0,0,0.06)",
           }}
         >
           Most Popular
         </span>
       )}
 
-      <p className="section-label" style={{ marginBottom: 12 }}>{plan.name}</p>
-      <p
-        style={{
-          fontFamily: "'JetBrains Mono', monospace",
-          fontSize: 10,
-          color: "var(--low)",
-          marginBottom: 6,
-        }}
-      >
-        Starting from
-      </p>
-      <div
-        style={{
-          fontFamily: "'JetBrains Mono', monospace",
-          fontWeight: 400,
-          fontSize: plan.featured ? 44 : 40,
-          color: plan.featured ? "var(--gold)" : "var(--text)",
-          lineHeight: 1,
-          letterSpacing: "-0.02em",
-        }}
-      >
-        {plan.price}
+      {/* ── Tier name — large, bold, high-contrast ── */}
+      <div style={{ marginBottom: 20 }}>
+        <p
+          style={{
+            fontFamily: "'Manrope', sans-serif",
+            fontWeight: 800,
+            fontSize: 22,
+            letterSpacing: "-0.02em",
+            color: plan.featured ? "var(--gold)" : "var(--text)",
+            lineHeight: 1,
+            margin: 0,
+          }}
+        >
+          {plan.name}
+        </p>
+        {plan.featured && (
+          <p
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: 10,
+              color: "var(--gold)",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              marginTop: 4,
+              opacity: 0.7,
+            }}
+          >
+            Recommended
+          </p>
+        )}
       </div>
 
-      <div className="flex items-center" style={{ gap: 6, marginTop: 10 }}>
+      {/* Price block */}
+      <div style={{ marginBottom: 6 }}>
+        <p
+          style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: 10,
+            color: "var(--low)",
+            textTransform: "uppercase",
+            letterSpacing: "0.1em",
+            marginBottom: 6,
+          }}
+        >
+          Starting from
+        </p>
+        <div
+          style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontWeight: 500,
+            fontSize: plan.featured ? 46 : 40,
+            color: plan.featured ? "var(--gold)" : "var(--text)",
+            lineHeight: 1,
+            letterSpacing: "-0.03em",
+          }}
+        >
+          {plan.price}
+        </div>
+      </div>
+
+      {/* Timeline */}
+      <div className="flex items-center" style={{ gap: 6, marginBottom: 24 }}>
         <Clock size={11} color="var(--low)" />
         <span
           style={{
@@ -142,27 +186,50 @@ function PricingCard({ plan, index }: PricingCardProps) {
         </span>
       </div>
 
-      <div style={{ height: 1, background: "var(--border-c)", margin: "24px 0" }} />
+      {/* Divider */}
+      <div
+        style={{
+          height: 1,
+          background: plan.featured ? "rgba(184,150,46,0.18)" : "var(--border-c)",
+          marginBottom: 24,
+        }}
+      />
 
+      {/* Feature list */}
       <ul
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: 11,
+          gap: 10,
           flexGrow: 1,
           marginBottom: 28,
           listStyle: "none",
           padding: 0,
+          margin: "0 0 28px 0",
         }}
       >
         {plan.features.map((f) => (
           <li key={f} className="flex items-start" style={{ gap: 10 }}>
-            <CheckCircle size={13} color="var(--gold)" style={{ flexShrink: 0, marginTop: 4 }} />
-            <span style={{ fontSize: 14, color: "var(--mid)", lineHeight: 1.55 }}>{f}</span>
+            <CheckCircle
+              size={14}
+              color={plan.featured ? "var(--gold)" : "var(--mid)"}
+              style={{ flexShrink: 0, marginTop: 3 }}
+            />
+            <span
+              style={{
+                fontSize: 13,
+                color: plan.featured ? "var(--text)" : "var(--mid)",
+                lineHeight: 1.55,
+                fontWeight: plan.featured ? 450 : 400,
+              }}
+            >
+              {f}
+            </span>
           </li>
         ))}
       </ul>
 
+      {/* CTA */}
       <button
         onClick={() => scrollToSection("contact")}
         className={plan.featured ? "btn-gold" : "btn-outline"}
@@ -180,9 +247,11 @@ export default function Pricing() {
     <section
       id="pricing"
       aria-labelledby="pricing-heading"
-      style={{ padding: "120px 0", position: "relative" }}
+      className="section-pad"
+      style={{ position: "relative" }}
     >
       <div className="max-w-[1280px] mx-auto px-6 md:px-10">
+        {/* Section header */}
         <div
           ref={headRef}
           style={{
@@ -198,10 +267,10 @@ export default function Pricing() {
             id="pricing-heading"
             style={{
               fontFamily: "'Manrope', sans-serif",
-              fontWeight: 600,
-              fontSize: "clamp(28px, 4vw, 44px)",
-              lineHeight: 1.15,
-              letterSpacing: "-0.02em",
+              fontWeight: 700,
+              fontSize: "clamp(28px, 4vw, 48px)",
+              lineHeight: 1.1,
+              letterSpacing: "-0.03em",
               color: "var(--text)",
               marginBottom: 18,
             }}
@@ -210,17 +279,18 @@ export default function Pricing() {
             <br />
             No surprises.
           </h2>
-          <p className="body-lg" style={{ maxWidth: 440 }}>
+          <p className="body-lg" style={{ maxWidth: 440, margin: 0 }}>
             Every project is scoped individually, but here is what most clients invest.
           </p>
         </div>
 
+        {/* Cards */}
         <div
           className="pricing-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 16,
+            gap: 20,
             alignItems: "stretch",
           }}
         >
@@ -239,16 +309,15 @@ export default function Pricing() {
 
       <style>{`
         .pricing-card:hover {
-          transform: translateY(-4px) !important;
-          border-color: var(--border2) !important;
-          box-shadow: 0 16px 48px rgba(0,0,0,0.45) !important;
+          transform: translateY(-5px) !important;
+          box-shadow: 0 16px 48px rgba(0,0,0,0.09) !important;
         }
         .pricing-card.is-featured:hover {
-          border-color: rgba(201,168,76,0.55) !important;
-          box-shadow: 0 24px 64px rgba(201,168,76,0.12) !important;
+          border-color: rgba(184,150,46,0.60) !important;
+          box-shadow: 0 20px 56px rgba(184,150,46,0.14) !important;
         }
         @media (max-width: 900px) {
-          .pricing-grid { grid-template-columns: 1fr !important; }
+          .pricing-grid { grid-template-columns: 1fr !important; max-width: 560px; margin: 0 auto; }
         }
       `}</style>
     </section>

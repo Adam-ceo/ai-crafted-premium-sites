@@ -22,11 +22,12 @@ const App = () => (
         position="bottom-right"
         toastOptions={{
           style: {
-            background: "#1C1C1C",
-            color: "#F0F0F0",
-            border: "1px solid #333",
+            background: "#FFFFFF",
+            color: "#141413",
+            border: "1px solid #E4E4E0",
             fontFamily: "'Manrope', sans-serif",
             fontSize: "14px",
+            boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
           },
         }}
       />
