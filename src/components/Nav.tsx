@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -23,15 +24,40 @@ export default function Nav() {
   const [progress, setProgress] = useState(0);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const location = useLocation();
   const navigate = useNavigate();
   const isHome = location.pathname === "/";
 
-  // Lock body scroll when mobile menu is open
+  // Lock body scroll + close on Escape when mobile menu is open
   useEffect(() => {
-    document.body.classList.toggle("mobile-menu-open", menuOpen);
-    return () => document.body.classList.remove("mobile-menu-open");
+    if (!menuOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.body.classList.add("mobile-menu-open");
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      document.body.classList.remove("mobile-menu-open");
+      window.removeEventListener("keydown", onKey);
+    };
   }, [menuOpen]);
+
+  // Auto-close menu when leaving mobile breakpoint
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const handler = (e: MediaQueryListEvent) => {
+      if (e.matches) setMenuOpen(false);
+    };
+    mq.addEventListener?.("change", handler);
+    return () => mq.removeEventListener?.("change", handler);
+  }, []);
 
   // Close everything on route change
   useEffect(() => {
@@ -70,7 +96,7 @@ export default function Nav() {
     return () => document.removeEventListener("mousedown", handler);
   }, [dropdownOpen]);
 
-  const goToSection = (id: string) => {
+  const goToSection = useCallback((id: string) => {
     setMenuOpen(false);
     setDropdownOpen(false);
     if (isHome) {
@@ -79,7 +105,9 @@ export default function Nav() {
       navigate("/");
       setTimeout(() => scrollToSection(id), 120);
     }
-  };
+  }, [isHome, navigate]);
+
+  const toggleMenu = useCallback(() => setMenuOpen((v) => !v), []);
 
   return (
     <header
@@ -136,6 +164,7 @@ export default function Nav() {
                   </Link>
                 ) : (
                   <button
+                    type="button"
                     onClick={() => goToSection(l.id!)}
                     style={{
                       fontFamily: "'Manrope', sans-serif",
@@ -161,7 +190,6 @@ export default function Nav() {
 
         {/* ── Desktop right: status + CTA dropdown ── */}
         <div className="hidden md:flex items-center" style={{ gap: 20, flexShrink: 0 }}>
-          {/* Available indicator */}
           <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
             <span
               className="lx-pulse"
@@ -173,9 +201,9 @@ export default function Nav() {
             </span>
           </div>
 
-          {/* CTA + dropdown — click-only, works on touch too */}
           <div ref={dropdownRef} style={{ position: "relative" }}>
             <button
+              type="button"
               className="btn-gold"
               style={{ padding: "9px 18px", fontSize: 13 }}
               onClick={() => setDropdownOpen((v) => !v)}
@@ -211,6 +239,7 @@ export default function Nav() {
                   {DROPDOWN_ITEMS.map((opt) => (
                     <li key={opt.id}>
                       <button
+                        type="button"
                         role="menuitem"
                         onClick={() => goToSection(opt.id)}
                         style={{
@@ -250,44 +279,17 @@ export default function Nav() {
           </div>
         </div>
 
-        {/* ── Mobile: hamburger only ── */}
+        {/* ── Mobile: hamburger ── */}
         <button
-          className="md:hidden"
+          ref={menuButtonRef}
           type="button"
-          onClick={() => setMenuOpen((v) => !v)}
+          className="md:hidden nav-burger"
+          onClick={toggleMenu}
           aria-label={menuOpen ? "Close navigation" : "Open navigation"}
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
-          style={{
-            width: 44,
-            height: 44,
-            position: "relative",
-            zIndex: 101,
-            flexShrink: 0,
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
-            background: menuOpen ? "var(--surface)" : "var(--elevated)",
-            border: "1px solid var(--border-c)",
-            borderRadius: 8,
-            cursor: "pointer",
-            color: "var(--text)",
-            touchAction: "manipulation",
-            transition: "background 0.15s, border-color 0.15s",
-          }}
         >
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.span
-              key={menuOpen ? "close" : "open"}
-              initial={{ opacity: 0, rotate: -45, scale: 0.7 }}
-              animate={{ opacity: 1, rotate: 0, scale: 1 }}
-              exit={{ opacity: 0, rotate: 45, scale: 0.7 }}
-              transition={{ duration: 0.15 }}
-              style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
-            >
-              {menuOpen ? <X size={18} strokeWidth={2} /> : <Menu size={18} strokeWidth={2} />}
-            </motion.span>
-          </AnimatePresence>
+          {menuOpen ? <X size={20} strokeWidth={2} /> : <Menu size={20} strokeWidth={2} />}
         </button>
       </div>
 
@@ -308,143 +310,145 @@ export default function Nav() {
         />
       )}
 
-      {/* ══ Mobile menu overlay ══ */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            id="mobile-menu"
-            key="mobile-menu"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Navigation menu"
-            style={{
-              position: "fixed",
-              top: 64,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              zIndex: 99,
-              background: "rgba(247,247,245,0.985)",
-              borderTop: "1px solid var(--border-c)",
-              overflowY: "auto",
-              WebkitOverflowScrolling: "touch" as React.CSSProperties["WebkitOverflowScrolling"],
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <div
+      {/* ══ Mobile menu overlay — rendered into <body> via portal ══ */}
+      {typeof document !== "undefined" && createPortal(
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              id="mobile-menu"
+              key="mobile-menu"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigation menu"
               style={{
-                flex: 1,
+                position: "fixed",
+                top: 64,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                zIndex: 90,
+                background: "rgba(247,247,245,0.985)",
+                borderTop: "1px solid var(--border-c)",
+                overflowY: "auto",
+                WebkitOverflowScrolling: "touch" as React.CSSProperties["WebkitOverflowScrolling"],
                 display: "flex",
                 flexDirection: "column",
-                padding: "18px 28px 0",
-                paddingBottom: "max(40px, env(safe-area-inset-bottom))",
               }}
             >
-              {/* Nav links */}
-              <nav aria-label="Mobile navigation">
-                {NAV_LINKS.map((l, i) => (
-                  <motion.div
-                    key={l.label}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.03 * i, duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    {l.to ? (
-                      <Link
-                        to={l.to}
-                        onClick={() => setMenuOpen(false)}
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          fontFamily: "'Manrope', sans-serif",
-                          fontSize: 22,
-                          fontWeight: 600,
-                          letterSpacing: "-0.01em",
-                          color: "var(--text)",
-                          minHeight: 68,
-                          borderBottom: "1px solid var(--border-c)",
-                          textDecoration: "none",
-                        }}
-                      >
-                        {l.label}
-                        <ArrowRight size={16} color="var(--low)" />
-                      </Link>
-                    ) : (
-                      <button
-                        onClick={() => goToSection(l.id!)}
-                        style={{
-                          width: "100%",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          fontFamily: "'Manrope', sans-serif",
-                          fontSize: 22,
-                          fontWeight: 600,
-                          letterSpacing: "-0.01em",
-                          color: "var(--text)",
-                          background: "none",
-                          border: "none",
-                          borderBottom: "1px solid var(--border-c)",
-                          minHeight: 68,
-                          padding: 0,
-                          cursor: "pointer",
-                          textAlign: "left",
-                        }}
-                      >
-                        {l.label}
-                        <ArrowRight size={16} color="var(--low)" />
-                      </button>
-                    )}
-                  </motion.div>
-                ))}
-              </nav>
-
-              {/* Spacer + CTA block */}
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.03 * NAV_LINKS.length + 0.08, duration: 0.22 }}
-                style={{ marginTop: "auto", marginBottom: 8, display: "flex", flexDirection: "column", gap: 16, paddingTop: 36 }}
+              <div
+                style={{
+                  flex: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  padding: "18px 28px 0",
+                  paddingBottom: "max(40px, env(safe-area-inset-bottom))",
+                }}
               >
-                <button
-                  type="button"
-                  className="btn-gold"
-                  style={{ width: "100%", justifyContent: "center", height: 56, fontSize: 15 }}
-                  onClick={() => goToSection("contact")}
-                >
-                  Start a project <ArrowRight size={16} />
-                </button>
+                <nav aria-label="Mobile navigation">
+                  {NAV_LINKS.map((l, i) => (
+                    <motion.div
+                      key={l.label}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.03 * i, duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      {l.to ? (
+                        <Link
+                          to={l.to}
+                          onClick={() => setMenuOpen(false)}
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            fontFamily: "'Manrope', sans-serif",
+                            fontSize: 22,
+                            fontWeight: 600,
+                            letterSpacing: "-0.01em",
+                            color: "var(--text)",
+                            minHeight: 68,
+                            borderBottom: "1px solid var(--border-c)",
+                            textDecoration: "none",
+                          }}
+                        >
+                          {l.label}
+                          <ArrowRight size={16} color="var(--low)" />
+                        </Link>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => goToSection(l.id!)}
+                          style={{
+                            width: "100%",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            fontFamily: "'Manrope', sans-serif",
+                            fontSize: 22,
+                            fontWeight: 600,
+                            letterSpacing: "-0.01em",
+                            color: "var(--text)",
+                            background: "none",
+                            border: "none",
+                            borderBottom: "1px solid var(--border-c)",
+                            minHeight: 68,
+                            padding: 0,
+                            cursor: "pointer",
+                            textAlign: "left",
+                          }}
+                        >
+                          {l.label}
+                          <ArrowRight size={16} color="var(--low)" />
+                        </button>
+                      )}
+                    </motion.div>
+                  ))}
+                </nav>
 
-                <button
-                  type="button"
-                  className="btn-outline"
-                  style={{ width: "100%", justifyContent: "center", height: 48, fontSize: 14 }}
-                  onClick={() => goToSection("pricing")}
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.03 * NAV_LINKS.length + 0.06, duration: 0.22 }}
+                  style={{ marginTop: "auto", marginBottom: 8, display: "flex", flexDirection: "column", gap: 16, paddingTop: 36 }}
                 >
-                  View pricing
-                </button>
+                  <button
+                    type="button"
+                    className="btn-gold"
+                    style={{ width: "100%", justifyContent: "center", height: 56, fontSize: 15 }}
+                    onClick={() => goToSection("contact")}
+                  >
+                    Start a project <ArrowRight size={16} />
+                  </button>
 
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, paddingTop: 4 }}>
-                  <span
-                    className="lx-pulse"
-                    style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--gold)", display: "inline-block" }}
-                    aria-hidden="true"
-                  />
-                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--low)" }}>
-                    Available for new projects
-                  </span>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                  <button
+                    type="button"
+                    className="btn-outline"
+                    style={{ width: "100%", justifyContent: "center", height: 48, fontSize: 14 }}
+                    onClick={() => goToSection("pricing")}
+                  >
+                    View pricing
+                  </button>
+
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, paddingTop: 4 }}>
+                    <span
+                      className="lx-pulse"
+                      style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--gold)", display: "inline-block" }}
+                      aria-hidden="true"
+                    />
+                    <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--low)" }}>
+                      Available for new projects
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </header>
   );
 }

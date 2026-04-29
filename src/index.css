@@ -360,6 +360,32 @@ a { color: inherit; }
 /* Robust mobile layering */
 body.mobile-menu-open { overflow: hidden; }
 
+/* Hamburger button — robust across browsers/devices */
+.nav-burger {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--elevated);
+  color: var(--text);
+  border: 1px solid var(--border-c);
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  z-index: 101;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  transition: background 0.15s, border-color 0.15s;
+}
+.nav-burger:hover { background: var(--surface); border-color: var(--border2); }
+.nav-burger:active { background: var(--surface); }
+.nav-burger[aria-expanded="true"] { background: var(--surface); border-color: var(--border2); }
+
 /* Native form controls */
 input, textarea, select { color-scheme: light; }
 select option { background: var(--surface); color: var(--text); }
