@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Quote } from "lucide-react";
 import Terminal from "./Terminal";
 import { scrollToSection } from "@/hooks/useScrollTo";
 
@@ -10,12 +10,11 @@ const LONGEST = ROTATING.reduce((a, b) => a.length > b.length ? a : b);
 function RotatingWord() {
   const [i, setI] = useState(0);
   useEffect(() => {
-    const t = setInterval(() => setI((p) => (p + 1) % ROTATING.length), 2600);
+    const t = setInterval(() => setI((p) => (p + 1) % ROTATING.length), 3200);
     return () => clearInterval(t);
   }, []);
   return (
     <span style={{ display: "inline-grid", verticalAlign: "baseline" }}>
-      {/* invisible sizer keeps width stable across all words */}
       <span aria-hidden style={{ visibility: "hidden", gridArea: "1/1", whiteSpace: "nowrap" }}>
         {LONGEST}
       </span>
@@ -38,8 +37,7 @@ function RotatingWord() {
 export default function Hero() {
   return (
     <section
-      className="relative"
-      style={{ paddingTop: 80, paddingBottom: 32 }}
+      className="relative hero-section"
       aria-labelledby="hero-heading"
     >
       <div className="max-w-[1280px] mx-auto px-6 md:px-10 hero-grid">
@@ -82,7 +80,7 @@ export default function Hero() {
             We design and build bespoke, high-performance websites for founders
             who want results — using AI to deliver faster, without cutting
             corners on craft. Starting at{" "}
-            <strong style={{ color: "var(--text)", fontWeight: 600 }}>€1,500</strong>.
+            <strong style={{ color: "var(--text)", fontWeight: 600 }}>€299</strong>.
           </motion.p>
 
           <motion.div
@@ -98,133 +96,178 @@ export default function Hero() {
             </button>
           </motion.div>
 
+          {/* Social proof — placeholder testimonial */}
           <motion.div
             variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.5 }}
-            style={{ borderTop: "1px solid var(--border-c)", paddingTop: 20, marginTop: 8 }}
+            style={{
+              borderTop: "1px solid var(--border-c)",
+              paddingTop: 24,
+              marginTop: 8,
+            }}
           >
-            <div className="flex items-center" style={{ gap: 28, flexWrap: "wrap", rowGap: 16 }}>
-              {[
-                { n: "14", u: "days", l: "average delivery" },
-                { n: "€1.5k", u: "", l: "starting price" },
-                { n: "100%", u: "", l: "custom code" },
-              ].map((s, i) => (
-                <div key={s.l} className="flex items-center" style={{ gap: 28 }}>
-                  <div>
-                    <div style={{ display: "flex", alignItems: "baseline", gap: 4 }}>
-                      <div
-                        style={{
-                          fontFamily: "'JetBrains Mono', monospace",
-                          fontSize: 18,
-                          color: "var(--gold)",
-                          lineHeight: 1,
-                        }}
-                      >
-                        {s.n}
-                      </div>
-                      {s.u && (
-                        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: "var(--low)" }}>
-                          {s.u}
-                        </div>
-                      )}
-                    </div>
-                    <div
-                      style={{
-                        fontFamily: "'Manrope', sans-serif",
-                        fontSize: 11,
-                        color: "var(--low)",
-                        marginTop: 4,
-                      }}
-                    >
-                      {s.l}
-                    </div>
-                  </div>
-                  {i < 2 && <span className="hero-stat-divider" style={{ width: 1, height: 28, background: "var(--border-c)" }} />}
-                </div>
-              ))}
+            <div style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
+              <Quote
+                size={18}
+                color="var(--gold)"
+                style={{ flexShrink: 0, marginTop: 2, opacity: 0.7 }}
+              />
+              <div>
+                <p
+                  className="font-serif"
+                  style={{
+                    fontSize: 15,
+                    fontStyle: "italic",
+                    color: "var(--mid)",
+                    lineHeight: 1.65,
+                    marginBottom: 10,
+                  }}
+                >
+                  "Exactly what we needed — delivered ahead of schedule.
+                  The quality blew our previous agency out of the water."
+                </p>
+                <p
+                  style={{
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: 10,
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    color: "var(--low)",
+                  }}
+                >
+                  — Thomas K., Founder · SaaS Platform
+                </p>
+              </div>
             </div>
           </motion.div>
         </motion.div>
 
-        {/* RIGHT */}
+        {/* RIGHT — Comparison card */}
         <motion.div
           initial={{ opacity: 0, x: 32 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <Terminal />
           <div
             style={{
-              marginTop: 20,
-              borderRadius: 10,
+              borderRadius: 12,
               overflow: "hidden",
               border: "1px solid var(--border-c)",
-              borderTop: "1px solid var(--border-g)",
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr 1fr",
-              gap: 1,
-              background: "var(--border-c)",
+              background: "var(--card-bg)",
+              boxShadow: "0 10px 40px -20px rgba(0,0,0,0.15)",
             }}
           >
+            {/* Header */}
+            <div
+              style={{
+                background: "var(--gold)",
+                padding: "18px 24px",
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: 11,
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  color: "#fff",
+                  fontWeight: 600,
+                }}
+              >
+                The Luxiflow Difference
+              </span>
+            </div>
+
+            {/* Column headers */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1.1fr 1fr 1fr",
+                padding: "16px 24px",
+                borderBottom: "1px solid var(--border-c)",
+                alignItems: "center",
+              }}
+            >
+              <span />
+              <span
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: 10,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  color: "var(--low)",
+                }}
+              >
+                ✕ Typical Agency
+              </span>
+              <span
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: 10,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  color: "var(--gold)",
+                  fontWeight: 600,
+                }}
+              >
+                ✓ Luxiflow
+              </span>
+            </div>
+
+            {/* Rows */}
             {[
-              { n: "14", u: "days", l: "avg. delivery" },
-              { n: "€1.5k", u: "", l: "no hidden fees" },
-              { n: "100%", u: "custom", l: "zero templates" },
-            ].map((c) => (
-              <div key={c.l} style={{ background: "var(--card-bg)", padding: "18px 20px" }}>
-                <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
-                  <span
-                    style={{
-                      fontFamily: "'JetBrains Mono', monospace",
-                      fontSize: 24,
-                      color: "var(--gold)",
-                      lineHeight: 1,
-                    }}
-                  >
-                    {c.n}
-                  </span>
-                  {c.u && (
-                    <span
-                      style={{
-                        fontFamily: "'JetBrains Mono', monospace",
-                        fontSize: 11,
-                        color: "var(--low)",
-                      }}
-                    >
-                      {c.u}
-                    </span>
-                  )}
-                </div>
-                <div
+              { label: "Timeline", bad: "8–12 weeks", good: "14 days" },
+              { label: "Starting", bad: "€8,000+", good: "From €299" },
+              { label: "Design", bad: "Template-based", good: "100% custom" },
+              { label: "Performance", bad: "60–80 score", good: "100/100" },
+              { label: "Revisions", bad: "Limited rounds", good: "Until perfect" },
+            ].map((row, idx, arr) => (
+              <div
+                key={row.label}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1.1fr 1fr 1fr",
+                  padding: "18px 24px",
+                  borderBottom: idx < arr.length - 1 ? "1px solid var(--border-c)" : "none",
+                  alignItems: "center",
+                }}
+              >
+                <span
                   style={{
-                    fontFamily: "'Manrope', sans-serif",
+                    fontFamily: "'JetBrains Mono', monospace",
                     fontSize: 11,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
                     color: "var(--low)",
-                    marginTop: 4,
                   }}
                 >
-                  {c.l}
-                </div>
+                  {row.label}
+                </span>
+                <span
+                  style={{
+                    fontFamily: "'Manrope', sans-serif",
+                    fontSize: 14,
+                    color: "var(--low)",
+                    textDecoration: "line-through",
+                  }}
+                >
+                  {row.bad}
+                </span>
+                <span
+                  style={{
+                    fontFamily: "'Manrope', sans-serif",
+                    fontSize: 14,
+                    color: "var(--text)",
+                    fontWeight: 500,
+                  }}
+                >
+                  {row.good}
+                </span>
               </div>
             ))}
           </div>
         </motion.div>
       </div>
-
-      <style>{`
-        .hero-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 80px;
-          align-items: center;
-        }
-        @media (max-width: 900px) {
-          .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-        }
-        @media (max-width: 480px) {
-          .hero-stat-divider { display: none !important; }
-        }
-      `}</style>
     </section>
   );
 }

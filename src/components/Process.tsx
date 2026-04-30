@@ -65,6 +65,7 @@ function StepItem({ step, index, isLast }: StepItemProps) {
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         {/* Numbered circle */}
         <div
+          className="step-circle"
           style={{
             width: 44,
             height: 44,
@@ -81,6 +82,7 @@ function StepItem({ step, index, isLast }: StepItemProps) {
             flexShrink: 0,
             position: "relative",
             zIndex: 1,
+            transition: "border-color 0.25s ease, box-shadow 0.25s ease",
           }}
         >
           {step.n}
@@ -157,14 +159,6 @@ function StepItem({ step, index, isLast }: StepItemProps) {
         </p>
       </div>
 
-      <style>{`
-        @media (max-width: 640px) {
-          .process-step {
-            grid-template-columns: 40px 1fr !important;
-            gap: 0 24px !important;
-          }
-        }
-      `}</style>
     </li>
   );
 }
@@ -230,14 +224,6 @@ export default function Process() {
         </ol>
       </div>
 
-      <style>{`
-        @media (max-width: 768px) {
-          .process-header-grid {
-            grid-template-columns: 1fr !important;
-            gap: 20px !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }

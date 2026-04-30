@@ -70,14 +70,16 @@ export default function Footer() {
               Premium websites built fast and affordably. AI-powered speed,
               human craft — delivered in 14 days.
             </p>
-            <a
-              href="mailto:hello@luxiflow.io"
-              style={{ fontSize: 13, color: "var(--mid)", transition: "color 0.15s" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text)")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--mid)")}
-            >
-              hello@luxiflow.io
-            </a>
+            <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
+              <a
+                href="mailto:hello@luxiflow.io"
+                style={{ fontSize: 13, color: "var(--mid)", transition: "color 0.15s" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--mid)")}
+              >
+                hello@luxiflow.io
+              </a>
+            </div>
           </div>
 
           <div>
@@ -136,17 +138,11 @@ export default function Footer() {
             © {new Date().getFullYear()} Luxiflow. All rights reserved.
           </p>
           <p style={{ fontSize: 12, color: "var(--low)" }}>
-            Built by Luxiflow — with precision.
+            Hand-crafted in Europe. Zero templates, ever.
           </p>
         </div>
       </div>
 
-      <style>{`
-        .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
-        @media (max-width: 768px) {
-          .footer-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
-        }
-      `}</style>
     </footer>
   );
 }

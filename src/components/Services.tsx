@@ -9,6 +9,7 @@ interface Service {
   desc: string;
   tags: string[];
   price: string;
+  originalPrice?: string;
   timeline: string;
 }
 
@@ -18,7 +19,7 @@ const services: Service[] = [
     name: "Marketing Website",
     desc: "Fast, conversion-focused websites that make your brand impossible to ignore. Built with React, optimised for Core Web Vitals and search engines from day one.",
     tags: ["React", "Framer Motion", "Vercel"],
-    price: "From €1,500",
+    price: "From €299",
     timeline: "7–10 days",
   },
   {
@@ -26,7 +27,7 @@ const services: Service[] = [
     name: "SaaS Landing Page",
     desc: "High-converting SaaS pages that communicate value in seconds. Analytics-wired and A/B test-ready from launch.",
     tags: ["Next.js", "Analytics", "A/B Testing"],
-    price: "From €2,500",
+    price: "From €299",
     timeline: "10–14 days",
   },
   {
@@ -34,7 +35,7 @@ const services: Service[] = [
     name: "Portfolio & Personal Brand",
     desc: "Distinctive personal sites for founders, creatives, and executives. Your story told with precision and craft.",
     tags: ["Custom Design", "CMS", "SEO"],
-    price: "From €1,500",
+    price: "From €299",
     timeline: "7–10 days",
   },
   {
@@ -42,7 +43,7 @@ const services: Service[] = [
     name: "E-commerce & Product",
     desc: "Lean, product-focused shops that convert browsers into buyers. Optimised for speed, trust, and checkout completion.",
     tags: ["Shopify", "Custom Cart", "Payments"],
-    price: "From €3,500",
+    price: "From €299",
     timeline: "10–14 days",
   },
 ];
@@ -125,25 +126,33 @@ function ServiceCard({ service, index }: ServiceCardProps) {
         style={{ marginTop: "auto", paddingTop: 20, borderTop: "1px solid var(--border-c)" }}
       >
         <div>
-          <div
-            style={{
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: 15,
-              color: "var(--gold)",
-            }}
-          >
-            {service.price}
+          <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
+            <div
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: 15,
+                color: "var(--gold)",
+              }}
+            >
+              {service.price}
+            </div>
+            <div
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: 12,
+                color: "var(--low)",
+                textDecoration: "line-through",
+              }}
+            >
+              €399
+            </div>
           </div>
           <div style={{ fontSize: 11, color: "var(--low)", marginTop: 2 }}>{service.timeline}</div>
         </div>
-        <button className="btn-ghost" onClick={() => scrollToSection("contact")}>
+        <button className="btn-ghost" onClick={() => scrollToSection("pricing")}>
           Get a quote <ArrowRight size={12} />
         </button>
       </div>
-      <style>{`
-        .service-card:hover { background: #F5F5F3 !important; }
-        .service-card:hover .icon-box { border-color: rgba(184,150,46,0.40) !important; }
-      `}</style>
     </article>
   );
 }
@@ -216,12 +225,6 @@ export default function Services() {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 640px) {
-          .services-grid { grid-template-columns: 1fr !important; }
-          .service-card { padding: 24px !important; }
-        }
-      `}</style>
     </section>
   );
 }

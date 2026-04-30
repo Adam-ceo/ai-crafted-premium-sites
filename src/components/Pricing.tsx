@@ -1,10 +1,12 @@
 import { CheckCircle, Clock, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useInView } from "@/hooks/useInView";
-import { scrollToSection } from "@/hooks/useScrollTo";
 
 interface Plan {
   name: string;
   price: string;
+  originalPrice?: string;
+  promoNote?: string;
   timeline: string;
   features: string[];
   cta: string;
@@ -14,7 +16,9 @@ interface Plan {
 const plans: Plan[] = [
   {
     name: "Starter",
-    price: "€1,500",
+    price: "€299",
+    originalPrice: "€399",
+    promoNote: "First 5 customers only",
     timeline: "7–10 days",
     features: [
       "1–3 page website",
@@ -29,7 +33,7 @@ const plans: Plan[] = [
   },
   {
     name: "Professional",
-    price: "€3,500",
+    price: "€599",
     timeline: "10–14 days",
     features: [
       "4–8 page website",
@@ -65,15 +69,23 @@ interface PricingCardProps {
   index: number;
 }
 
+const PLAN_SLUGS: Record<string, string> = {
+  Starter: "starter",
+  Professional: "professional",
+  Enterprise: "enterprise",
+};
+
 function PricingCard({ plan, index }: PricingCardProps) {
   const [ref, inView] = useInView<HTMLDivElement>();
+  const navigate = useNavigate();
+  const slug = PLAN_SLUGS[plan.name] ?? "starter";
 
   return (
     <div
       ref={ref}
       className={`pricing-card ${plan.featured ? "is-featured" : ""}`}
       style={{
-        background: plan.featured ? "#FEFDF7" : "var(--card-bg)",
+        background: plan.featured ? "var(--surface-warm)" : "var(--card-bg)",
         border: plan.featured
           ? "2px solid rgba(184,150,46,0.40)"
           : "1px solid var(--border-c)",
@@ -160,16 +172,52 @@ function PricingCard({ plan, index }: PricingCardProps) {
         </p>
         <div
           style={{
-            fontFamily: "'JetBrains Mono', monospace",
-            fontWeight: 500,
-            fontSize: plan.featured ? 46 : 40,
-            color: plan.featured ? "var(--gold)" : "var(--text)",
-            lineHeight: 1,
-            letterSpacing: "-0.03em",
+            display: "flex",
+            alignItems: "baseline",
+            gap: 12,
+            flexWrap: "wrap",
           }}
         >
-          {plan.price}
+          <div
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontWeight: 500,
+              fontSize: plan.featured ? 46 : 40,
+              color: plan.featured ? "var(--gold)" : "var(--text)",
+              lineHeight: 1,
+              letterSpacing: "-0.03em",
+            }}
+          >
+            {plan.price}
+          </div>
+          {plan.originalPrice && (
+            <span
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: 18,
+                color: "var(--low)",
+                textDecoration: "line-through",
+              }}
+            >
+              {plan.originalPrice}
+            </span>
+          )}
         </div>
+        {plan.promoNote && (
+          <p
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: 10,
+              color: "var(--gold)",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              marginTop: 8,
+              fontWeight: 600,
+            }}
+          >
+            {plan.promoNote}
+          </p>
+        )}
       </div>
 
       {/* Timeline */}
@@ -231,7 +279,7 @@ function PricingCard({ plan, index }: PricingCardProps) {
 
       {/* CTA */}
       <button
-        onClick={() => scrollToSection("contact")}
+        onClick={() => navigate(`/quote/${slug}`)}
         className={plan.featured ? "btn-gold" : "btn-outline"}
         style={{ width: "100%", justifyContent: "center" }}
       >
@@ -307,19 +355,6 @@ export default function Pricing() {
         </p>
       </div>
 
-      <style>{`
-        .pricing-card:hover {
-          transform: translateY(-5px) !important;
-          box-shadow: 0 16px 48px rgba(0,0,0,0.09) !important;
-        }
-        .pricing-card.is-featured:hover {
-          border-color: rgba(184,150,46,0.60) !important;
-          box-shadow: 0 20px 56px rgba(184,150,46,0.14) !important;
-        }
-        @media (max-width: 900px) {
-          .pricing-grid { grid-template-columns: 1fr !important; max-width: 560px; margin: 0 auto; }
-        }
-      `}</style>
     </section>
   );
 }

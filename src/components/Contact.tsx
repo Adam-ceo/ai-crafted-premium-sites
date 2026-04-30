@@ -1,6 +1,6 @@
 import { useState, FormEvent, useRef } from "react";
 import { Link } from "react-router-dom";
-import { AlertCircle, CheckCircle, Send } from "lucide-react";
+import { AlertCircle, CheckCircle, Send, Clock, Lock, MessageCircle } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
 import { useInView } from "@/hooks/useInView";
@@ -46,6 +46,7 @@ type FormState = {
   name: string;
   email: string;
   budget: string;
+  phone: string;
   message: string;
   consent: boolean;
 };
@@ -59,7 +60,7 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [form, setForm] = useState<FormState>({
-    name: "", email: "", budget: "", message: "", consent: false,
+    name: "", email: "", budget: "", phone: "", message: "", consent: false,
   });
   const [errors, setErrors] = useState<Errors>({});
   const [touched, setTouched] = useState<Touched>({});
@@ -119,6 +120,7 @@ export default function Contact() {
           name: form.name,
           email: form.email,
           budget: form.budget || "Not specified",
+          phone: form.phone || "Not provided",
           message: form.message,
           to_email: "hello@luxiflow.io",
           reply_to: form.email,
@@ -137,7 +139,7 @@ export default function Contact() {
 
   const reset = () => {
     setSuccess(false);
-    setForm({ name: "", email: "", budget: "", message: "", consent: false });
+    setForm({ name: "", email: "", budget: "", phone: "", message: "", consent: false });
     setErrors({});
     setTouched({});
   };
@@ -259,6 +261,7 @@ export default function Contact() {
                 <label htmlFor="contact-name" style={labelStyle}>Full name</label>
                 <input
                   id="contact-name"
+                  name="name"
                   type="text"
                   autoComplete="name"
                   placeholder="Alex Johnson"
@@ -285,6 +288,7 @@ export default function Contact() {
                 <label htmlFor="contact-email" style={labelStyle}>Email address</label>
                 <input
                   id="contact-email"
+                  name="email"
                   type="email"
                   autoComplete="email"
                   placeholder="alex@company.com"
@@ -311,6 +315,7 @@ export default function Contact() {
                 <label htmlFor="contact-budget" style={labelStyle}>Budget range</label>
                 <select
                   id="contact-budget"
+                  name="budget"
                   value={form.budget}
                   onChange={(e) => update("budget", e.target.value)}
                   onFocus={onFocus}
@@ -326,17 +331,36 @@ export default function Contact() {
                   }}
                 >
                   <option value="">Select a range</option>
-                  <option value="<1k">Under €1,000</option>
-                  <option value="1-3k">€1,000 – €3,000</option>
-                  <option value="3-6k">€3,000 – €6,000</option>
-                  <option value="6k+">€6,000+</option>
+                  <option value="299-599">€299 – €599</option>
+                  <option value="599-1500">€599 – €1,500</option>
+                  <option value="1500-3000">€1,500 – €3,000</option>
+                  <option value="3000+">€3,000+</option>
                 </select>
+              </div>
+
+              <div>
+                <label htmlFor="contact-phone" style={labelStyle}>
+                  Phone <span style={{ color: "var(--low)", fontFamily: "'Manrope', sans-serif", letterSpacing: 0, textTransform: "none", fontSize: 11 }}>(optional)</span>
+                </label>
+                <input
+                  id="contact-phone"
+                  name="phone"
+                  type="tel"
+                  autoComplete="tel"
+                  placeholder="+44 7700 900000"
+                  value={form.phone ?? ""}
+                  onChange={(e) => update("phone" as keyof FormState, e.target.value)}
+                  onFocus={onFocus}
+                  onBlur={onBlurStyle}
+                  style={{ ...fieldBase }}
+                />
               </div>
 
               <div>
                 <label htmlFor="contact-message" style={labelStyle}>Project description</label>
                 <textarea
                   id="contact-message"
+                  name="message"
                   rows={5}
                   placeholder="Tell us what you are building, who it is for, and what success looks like."
                   value={form.message}
@@ -439,6 +463,30 @@ export default function Contact() {
               </button>
             </form>
           )}
+          {/* Trust strip below form */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              gap: 20,
+              marginTop: 28,
+            }}
+          >
+            {[
+              { icon: Clock, text: "Response within 24 hours" },
+              { icon: MessageCircle, text: "No commitment required" },
+              { icon: Lock, text: "Your data stays private" },
+            ].map(({ icon: Icon, text }) => (
+              <div
+                key={text}
+                style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: "var(--low)" }}
+              >
+                <Icon size={12} color="var(--low)" />
+                {text}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

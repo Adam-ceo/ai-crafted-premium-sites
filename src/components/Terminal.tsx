@@ -28,7 +28,7 @@ export default function Terminal() {
         setDone(false);
         setLineIdx(0);
         setCharIdx(0);
-      }, 3200);
+      }, 5500);
       return () => { if (timerRef.current) clearTimeout(timerRef.current); };
     }
 
@@ -91,6 +91,7 @@ export default function Terminal() {
 
       {/* Body — fixed height: all lines always occupy space, future ones are invisible */}
       <div
+        className="terminal-body"
         style={{
           padding: "20px 22px 28px",
           fontFamily: "'JetBrains Mono', monospace",
@@ -120,7 +121,7 @@ export default function Terminal() {
               }}
             >
               {displayText}
-              {isCurrent && (
+              {(isCurrent || (done && i === lines.length - 1)) && (
                 <span
                   className="cursor-blink"
                   style={{
