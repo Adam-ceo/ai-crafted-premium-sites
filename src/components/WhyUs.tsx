@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useInView } from "@/hooks/useInView";
 
 interface Item {
@@ -37,13 +36,11 @@ interface WhyItemProps {
 
 function WhyItem({ item, index }: WhyItemProps) {
   const [ref, inView] = useInView<HTMLDivElement>();
-  const [hover, setHover] = useState(false);
 
   return (
     <div
       ref={ref}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
+      className="why-card"
       style={{
         background: "var(--surface)",
         padding: "36px 32px",
@@ -52,32 +49,22 @@ function WhyItem({ item, index }: WhyItemProps) {
         opacity: inView ? 1 : 0,
         transform: inView ? "translateY(0)" : "translateY(20px)",
         transition: `opacity 0.55s ease ${index * 0.08}s, transform 0.55s ease ${index * 0.08}s, box-shadow 0.25s ease`,
-        boxShadow: hover ? "inset 0 0 0 1px rgba(184,150,46,0.20)" : "inset 0 0 0 1px transparent",
       }}
     >
-      {/* Hover gradient */}
+      {/* Hover gradient — toggled via CSS class */}
       <div
+        className="why-hover-bg"
         style={{
           position: "absolute",
           inset: 0,
           background: "linear-gradient(135deg, rgba(184,150,46,0.05) 0%, transparent 55%)",
           pointerEvents: "none",
-          opacity: hover ? 1 : 0,
-          transition: "opacity 0.3s ease",
         }}
       />
 
-      {/* Card content — number in its own fixed column, never overlapping text */}
+      {/* Card content */}
       <div style={{ position: "relative", zIndex: 1, display: "flex", gap: 24 }}>
-
-        {/* Number column — fixed width, clearly separated */}
-        <div
-          style={{
-            flexShrink: 0,
-            width: 36,
-            paddingTop: 2,
-          }}
-        >
+        <div style={{ flexShrink: 0, width: 36, paddingTop: 2 }}>
           <span
             style={{
               fontFamily: "'JetBrains Mono', monospace",
@@ -92,7 +79,6 @@ function WhyItem({ item, index }: WhyItemProps) {
           </span>
         </div>
 
-        {/* Content column */}
         <div style={{ flex: 1, minWidth: 0 }}>
           <h3
             style={{
@@ -120,6 +106,7 @@ export default function WhyUs() {
   const [headRef, headIn] = useInView<HTMLDivElement>();
   return (
     <section
+      id="why"
       aria-labelledby="why-heading"
       className="section-pad"
       style={{
@@ -129,7 +116,6 @@ export default function WhyUs() {
       }}
     >
       <div className="max-w-[1280px] mx-auto px-6 md:px-10">
-        {/* Header */}
         <div
           ref={headRef}
           style={{
@@ -157,7 +143,6 @@ export default function WhyUs() {
           </h2>
         </div>
 
-        {/* 2×2 grid */}
         <div
           className="why-grid"
           style={{
@@ -175,12 +160,6 @@ export default function WhyUs() {
           ))}
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 640px) {
-          .why-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </section>
   );
 }

@@ -1,14 +1,21 @@
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Clock, Shield, Zap } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
 import { scrollToSection } from "@/hooks/useScrollTo";
+
+const trustItems = [
+  { icon: Clock, text: "14-day delivery guarantee" },
+  { icon: Shield, text: "Fixed price, no surprises" },
+  { icon: Zap, text: "Lighthouse 90+ on every build" },
+];
 
 export default function CtaBanner() {
   const [ref, inView] = useInView<HTMLDivElement>();
   return (
     <section
       aria-labelledby="cta-heading"
-      style={{ padding: "100px 0", textAlign: "center" }}
+      className="section-pad"
+      style={{ textAlign: "center" }}
     >
       <div
         ref={ref}
@@ -19,24 +26,51 @@ export default function CtaBanner() {
           transition: "all 0.6s ease",
         }}
       >
-        <p className="section-label" style={{ marginBottom: 18 }}>Start today</p>
+        <p className="section-label" style={{ marginBottom: 18 }}>Still deciding?</p>
         <h2
           id="cta-heading"
           className="display-serif"
           style={{
-            fontSize: "clamp(38px, 5vw, 72px)",
-            margin: "0 auto 24px",
-            maxWidth: 640,
+            fontSize: "clamp(36px, 5vw, 68px)",
+            margin: "0 auto 20px",
+            maxWidth: 680,
           }}
         >
-          Your next website,
+          Every week without a great site
           <br />
-          <span style={{ color: "var(--gold)" }}>done in 14 days.</span>
+          <span style={{ color: "var(--gold)" }}>is a client you're not getting.</span>
         </h2>
-        <p className="body-lg" style={{ maxWidth: 380, margin: "0 auto 40px" }}>
-          No templates. No delays. Just a fast, beautiful website that works as
-          hard as you do.
+        <p className="body-lg" style={{ maxWidth: 400, margin: "0 auto 36px" }}>
+          Let's build something you'll be proud to share. From brief to live in 14 days — guaranteed.
         </p>
+
+        {/* Trust indicators */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexWrap: "wrap",
+            gap: 24,
+            marginBottom: 40,
+          }}
+        >
+          {trustItems.map(({ icon: Icon, text }) => (
+            <div
+              key={text}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+                fontSize: 13,
+                color: "var(--mid)",
+              }}
+            >
+              <Icon size={14} color="var(--gold)" />
+              {text}
+            </div>
+          ))}
+        </div>
+
         <div
           style={{
             display: "flex",
