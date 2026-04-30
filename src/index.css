@@ -135,7 +135,16 @@
     z-index: 9999;
     text-decoration: none;
   }
-  .skip-link:focus { top: 12px; }
+  .skip-link:focus,
+  .skip-link:focus-visible {
+    width: auto;
+    height: auto;
+    clip: auto;
+    margin: 0;
+    overflow: visible;
+    padding: 10px 16px;
+    border-radius: 6px;
+  }
 
   /* Selection */
   ::selection {
