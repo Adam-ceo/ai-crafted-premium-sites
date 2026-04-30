@@ -29,12 +29,44 @@ export default function Nav() {
   const navigate = useNavigate();
   const isHome = location.pathname === "/";
 
-  // Lock body scroll + close on Escape when mobile menu is open
+  // Lock body scroll + close on Escape when mobile menu is open.
+  // Uses position:fixed technique to fully prevent background scroll on iOS Safari,
+  // and compensates for scrollbar width to avoid horizontal layout jump on desktop.
   useEffect(() => {
     if (!menuOpen) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    document.body.classList.add("mobile-menu-open");
+
+    const body = document.body;
+    const html = document.documentElement;
+    const scrollY = window.scrollY;
+    const scrollbarWidth = window.innerWidth - html.clientWidth;
+
+    // Save previous inline styles so we can restore exactly
+    const prev = {
+      bodyPosition: body.style.position,
+      bodyTop: body.style.top,
+      bodyLeft: body.style.left,
+      bodyRight: body.style.right,
+      bodyWidth: body.style.width,
+      bodyOverflow: body.style.overflow,
+      bodyPaddingRight: body.style.paddingRight,
+      htmlOverflow: html.style.overflow,
+    };
+
+    // Compensate for the disappearing scrollbar to prevent horizontal jump
+    if (scrollbarWidth > 0) {
+      body.style.paddingRight = `${scrollbarWidth}px`;
+    }
+
+    // Lock background scroll (works on iOS Safari too)
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.width = "100%";
+    body.style.overflow = "hidden";
+    html.style.overflow = "hidden";
+    body.classList.add("mobile-menu-open");
+
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setMenuOpen(false);
@@ -42,9 +74,20 @@ export default function Nav() {
       }
     };
     window.addEventListener("keydown", onKey);
+
     return () => {
-      document.body.style.overflow = prev;
-      document.body.classList.remove("mobile-menu-open");
+      // Restore styles
+      body.style.position = prev.bodyPosition;
+      body.style.top = prev.bodyTop;
+      body.style.left = prev.bodyLeft;
+      body.style.right = prev.bodyRight;
+      body.style.width = prev.bodyWidth;
+      body.style.overflow = prev.bodyOverflow;
+      body.style.paddingRight = prev.bodyPaddingRight;
+      html.style.overflow = prev.htmlOverflow;
+      body.classList.remove("mobile-menu-open");
+      // Restore scroll position without smooth behavior
+      window.scrollTo(0, scrollY);
       window.removeEventListener("keydown", onKey);
     };
   }, [menuOpen]);
