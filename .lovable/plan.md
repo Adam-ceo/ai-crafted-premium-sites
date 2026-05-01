@@ -1,148 +1,54 @@
-# Luxiflow → 10/10 stílus konzisztencia terv
+## Cél
 
-A cél: minden inline `fontFamily`/`fontSize`/`letterSpacing`/`borderRadius`/szín kiváltása **egységes, központosított design tokenekkel**. A vizuális végeredmény változatlan — csak a kód lesz tiszta és egy ponton hangolható.
+A PageSpeed által jelzett render-blocking `index-*.css` (~34 KB) lecsökkentése és az LCP gyorsítása. A bundle nagy részét a `@fontsource` csomagok teljes CSS-ei adják (összes nyelvi subset minden súlyhoz × 3 család = sok száz `@font-face` szabály), nem maga a Tailwind.
 
----
+## Mit fogunk tenni
 
-## 1. Bővített CSS token rendszer (`src/index.css`)
+### 1. Csak szükséges font subsetek importálása (legnagyobb nyereség, ~20-25 KB CSS megtakarítás)
 
-A `:root` blokkba új tokenek kerülnek (a meglévők mellé):
+A `src/main.tsx` jelenleg a teljes `wght.css`-t tölti be (minden nyelvi subset). Lecseréljük csak a `latin` (és opcionálisan `latin-ext`) subsetekre, mivel az oldal angol nyelvű:
 
-```css
-/* TYPE SCALE (clamp-alapú reszponzív skála) */
---text-xs:   11px;
---text-sm:   13px;
---text-base: 15px;
---text-md:   17px;
---text-lg:   clamp(18px, 1.6vw, 22px);
---text-xl:   clamp(22px, 2.2vw, 28px);
---text-2xl:  clamp(28px, 3.2vw, 38px);
---text-3xl:  clamp(34px, 4.5vw, 56px);
---text-4xl:  clamp(46px, 5.5vw, 82px);
-
-/* FONT WEIGHTS — szabványosított */
---fw-light:  300;   /* csak Newsreader display */
---fw-regular:400;
---fw-medium: 500;
---fw-semi:   600;
---fw-bold:   700;
-
-/* LETTER SPACING — kanonikus 5 érték */
---ls-tight:   -0.03em;  /* nagy display */
---ls-snug:    -0.02em;  /* H1/H2 */
---ls-normal:   0;       /* body */
---ls-mono-sm:  0.12em;  /* kis monospace */
---ls-mono:     0.16em;  /* eyebrow/label */
-
-/* RADIUS — kanonikus skála */
---r-sm:   6px;
---r-md:   8px;
---r-lg:  12px;
---r-xl:  14px;   /* card default */
---r-2xl: 18px;
---r-full:9999px;
-
-/* FONT FAMILIES — egy helyen */
---ff-serif: 'Newsreader', Georgia, serif;
---ff-sans:  'Manrope', system-ui, -apple-system, sans-serif;
---ff-mono:  'JetBrains Mono', 'Fira Code', monospace;
+```ts
+// Helyett: "@fontsource-variable/newsreader/wght.css"
+import "@fontsource-variable/newsreader/latin-wght.css";
+import "@fontsource-variable/manrope/latin-wght.css";
+import "@fontsource/jetbrains-mono/latin-400.css";
+import "@fontsource/jetbrains-mono/latin-500.css";
+import "@fontsource/jetbrains-mono/latin-700.css";
 ```
 
-## 2. Tipográfiai utility osztályok bővítése
+A `newsreader-italic`-ot eltávolítjuk, ha sehol nem használunk dőlt szöveget (gyors keresés után döntünk; ha kell, csak `latin-italic` marad).
 
-A meglévő `.display-serif`, `.eyebrow`, `.section-label`, `.body-lg`, `.body-sm` mellé:
+### 2. Hero font preload
 
-```css
-/* Display variánsok */
-.display-xl  { font: var(--fw-light) var(--text-4xl)/1.05 var(--ff-serif); letter-spacing: var(--ls-tight); }
-.display-lg  { font: var(--fw-light) var(--text-3xl)/1.1  var(--ff-serif); letter-spacing: var(--ls-snug); }
-.display-md  { font: var(--fw-light) var(--text-2xl)/1.15 var(--ff-serif); letter-spacing: var(--ls-snug); }
+A `index.html` `<head>`-jébe `<link rel="preload" as="font" type="font/woff2" crossorigin>` tagek a hero-ban használt 1-2 font fájlra (Newsreader Variable Latin, Manrope Variable Latin). Ezzel az LCP szöveg azonnal renderelhető a CSS parse után is.
 
-/* Body variánsok (újradefiniálva tokenekkel) */
-.body-lg     { font-size: var(--text-md); line-height: 1.75; color: var(--mid); }
-.body-base   { font-size: var(--text-base); line-height: 1.7; color: var(--mid); }
-.body-sm     { font-size: var(--text-sm); line-height: 1.65; color: var(--mid); }
+### 3. `font-display: swap` ellenőrzése
 
-/* Mono címkék — 2 kanonikus változat (meglévő) */
-.eyebrow      { /* gold */ }
-.section-label{ /* low — mostantól tényleg használva */ }
-.label-mono   { font: var(--fw-medium) var(--text-xs) var(--ff-mono); letter-spacing: var(--ls-mono-sm); text-transform: uppercase; }
+A `@fontsource` alapból `swap`-ot használ — megerősítjük, hogy nem írtuk felül `block`-ra az `index.css`-ben.
 
-/* Card */
-.card         { background: var(--card-bg); border:1px solid var(--border-c); border-radius: var(--r-xl); }
-```
+### 4. CSS bundle splitting marad
 
-## 3. `tailwind.config.ts` szinkronizálás
+A Vite már `cssCodeSplit: true`-val épít, de mivel az összes font import a `main.tsx`-ben van, egy bundle-be kerül. Ez rendben van — a fontos a méret csökkentése.
 
-- A régi `brass`/`luxiblack`/`warmwhite`/`warmgray` márkaszínek **eltávolítása** (vagy aliasolása az új tokenekre, hogy a Philosophy/Portfolio se törjön)
-- `fontFamily.serif/sans/mono` változatlan (jó)
-- `letterSpacing` extend frissítése a kanonikus 5 értékre
-- `fontSize` extend hozzáadása ami a CSS tokenekre mappel: `xs/sm/base/md/lg/xl/2xl/3xl/4xl`
-- `borderRadius` extend frissítése: `sm:6 / DEFAULT:8 / md:8 / lg:12 / xl:14 / 2xl:18`
+### 5. Opcionális: `dns-prefetch` → `preconnect` az emailjs-hez csak a Quote oldalon
 
-## 4. Komponens migráció — minden inline stílus → utility/token
+Az `index.html`-ben minden oldalra elmegy a `dns-prefetch`. Mivel csak a `/quote` használja, ez maradhat (olcsó), de jelezzük: ha még tisztább head kell, áthelyezhető a Quote komponensbe `useEffect`-tel.
 
-**Minden komponensben** (Hero, Nav, Footer, Pricing, Process, Services, WhyUs, Contact, CtaBanner, Testimonials, Quote, Blog, BlogPost, LegalLayout, Logo, Terminal, BackToTop):
+## Nem csinálunk
 
-- `style={{ fontFamily: "'Manrope', sans-serif" }}` → `className="font-sans"`
-- `style={{ fontFamily: "'JetBrains Mono', monospace" }}` → `className="font-mono"`
-- `style={{ fontFamily: "'Newsreader', serif" }}` → `className="font-serif"`
-- `style={{ fontSize: 14 }}` → `className="text-sm"` (vagy `text-base`/`text-md`/...)
-- `style={{ letterSpacing: "0.14em" }}` → kanonikus érték közelebb (`text-mono` osztály)
-- `style={{ borderRadius: 14 }}` → `className="rounded-xl"`
-- `style={{ color: "var(--text)" }}` marad (token), DE inline hex (`#C9A84C`, `#FFFFFF`, `#A1A1AA`, `#0F0F0F`) → `var(--gold)` / `var(--text)` / `var(--low)` token
+- Nem váltunk Google Fonts CDN-re (lassabb lenne és cookie-mentes preconnect kell hozzá).
+- Nem inline-oljuk a critical CSS-t kézzel — a Tailwind purge után a maradék (~10-15 KB Latin-only fontokkal) már elfogadható méretű és cache-elhető.
+- Nem nyúlunk a vizuális megjelenéshez.
 
-**Quote.tsx** (23 inline fontFamily) — komplett átírás, leglátványosabb tisztulás itt.
+## Várható eredmény
 
-## 5. Dark theme maradványok javítása
+- `index-*.css` átviteli méret: **~34 KB → ~10-14 KB** (gzipped még kevesebb).
+- LCP javulás: ~150-300 ms tipikusan 4G-n.
+- A "render-blocking requests" figyelmeztetés vagy eltűnik, vagy a hatása elhanyagolhatóra csökken.
 
-- **`Philosophy.tsx`** — komponens nincs használva, **törlés**
-- **`Portfolio.tsx`** — komponens nincs használva, **törlés**
-- **`NotFound.tsx`** — `#C9A84C` → `var(--gold)`, `#FFFFFF` → `var(--text)`, `#A1A1AA` → `var(--low)`, `#0F0F0F` → `var(--surface)` + light háttér
-- **`Terminal.tsx`** — szándékos sötét terminál look megmarad, de a `#C9A84C` → `var(--gold)` (új arany árnyalat)
+## Érintett fájlok
 
-## 6. Outlier font-weight-ek normalizálása
-
-- `fontWeight: 450` (3 helyen, Nav.tsx) → `500`
-- `fontWeight: 800` (Quote.tsx 435, Process.tsx 132) → `700`
-
-## 7. shadcn HSL ↔ custom hex szinkron
-
-A shadcn `--primary` (43 60% 44%) **megtartva** (shadcn UI komponensek miatt kell), de a komponensek **csak** a custom `var(--gold)` tokent használják → egyetlen kanonikus arany.
-
----
-
-## Várható eredmény (audit pontszámok)
-
-| Terület | Most | Cél |
-|---|---|---|
-| Színrendszer | 9 | **10** |
-| Színhasználat | 7 | **10** |
-| Font családok | 6 | **10** |
-| Font weight | 7 | **10** |
-| Font size hierarchia | 5 | **10** |
-| Letter spacing | 5 | **10** |
-| Border radius | 6 | **10** |
-| Button rendszer | 10 | 10 |
-| Tipográfiai utility | 8 | **10** |
-| Tailwind config kihasználtság | 3 | **10** |
-
----
-
-## Hatókör és kockázat
-
-- **17 komponens fájl** módosul (Hero, Nav, Footer, Services, Pricing, Process, WhyUs, Contact, CtaBanner, Testimonials, Terminal, Logo, BackToTop, Contact, LegalLayout, Cookie, NotFound) + **6 oldal** (Index, Blog, BlogPost, Quote, Cookie/Privacy/Terms via LegalLayout)
-- **2 fájl törlése** (Philosophy, Portfolio — dead code)
-- **0 vizuális változás** szándékolt — minden migráció pixel-pontos megfeleltetéssel
-- **Tesztelés**: minden szakaszt vizuálisan verifikálok screenshot összehasonlítással a refaktor után
-
-## Becsült változtatások
-
-- `index.css`: ~80 új sor (tokenek + utility-k)
-- `tailwind.config.ts`: kibővített extend
-- ~70 inline `fontFamily` lecserélése
-- ~50 inline `fontSize` cseréje
-- ~30 inline `borderRadius` cseréje
-- ~10 hardkódolt szín tokenizálása
-
-Jóváhagyás után végrehajtom egyben.
+- `src/main.tsx` — font importok cseréje latin subsetre
+- `index.html` — 1-2 font preload tag hozzáadása
+- (esetleg) `src/index.css` — `font-display` ellenőrzés
