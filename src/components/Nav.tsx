@@ -151,7 +151,12 @@ export default function Nav() {
         }}
       >
         {/* Logo */}
-        <Link to="/" aria-label="Luxiflow home" style={{ flexShrink: 0, lineHeight: 0 }}>
+        <Link
+          to="/"
+          aria-label="Luxiflow home"
+          style={{ flexShrink: 0, lineHeight: 0 }}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
           <Logo />
         </Link>
 
