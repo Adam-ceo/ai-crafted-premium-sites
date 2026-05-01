@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Quote } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Terminal from "./Terminal";
 import { scrollToSection } from "@/hooks/useScrollTo";
 
