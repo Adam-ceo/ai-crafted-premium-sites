@@ -188,7 +188,6 @@ const fieldBase: React.CSSProperties = {
   border: "1px solid var(--border2)",
   borderRadius: 8,
   padding: "13px 16px",
-  fontFamily: "'Manrope', sans-serif",
   fontSize: 14,
   color: "var(--text)",
   outline: "none",
@@ -431,7 +430,6 @@ export default function Quote() {
                     </p>
                     <h2
                       style={{
-                        fontFamily: "'Manrope', sans-serif",
                         fontWeight: 800,
                         fontSize: 22,
                         letterSpacing: "-0.02em",
@@ -509,7 +507,6 @@ export default function Quote() {
                     cursor: "pointer",
                     fontSize: 13,
                     fontWeight: 600,
-                    fontFamily: "'Manrope', sans-serif",
                     letterSpacing: "0.01em",
                     color: showPlanPicker ? "var(--text)" : "#fff",
                     display: "inline-flex",
@@ -580,7 +577,6 @@ export default function Quote() {
                           <div>
                             <div
                               style={{
-                                fontFamily: "'Manrope', sans-serif",
                                 fontWeight: 600,
                                 fontSize: 13,
                                 color: active ? "var(--gold)" : "var(--text)",
@@ -638,7 +634,6 @@ export default function Quote() {
                   <div style={{ marginBottom: 18 }}>
                     <h3
                       style={{
-                        fontFamily: "'Manrope', sans-serif",
                         fontWeight: 700,
                         fontSize: 16,
                         color: "var(--text)",
@@ -714,7 +709,6 @@ export default function Quote() {
                           <div style={{ flex: 1, minWidth: 0 }}>
                             <div
                               style={{
-                                fontFamily: "'Manrope', sans-serif",
                                 fontSize: 13,
                                 fontWeight: 600,
                                 color: "var(--text)",
@@ -906,7 +900,6 @@ export default function Quote() {
                   </div>
                   <h3
                     style={{
-                      fontFamily: "'Manrope', sans-serif",
                       fontSize: 20,
                       fontWeight: 700,
                       color: "var(--text)",
@@ -936,7 +929,6 @@ export default function Quote() {
                 >
                   <h3
                     style={{
-                      fontFamily: "'Manrope', sans-serif",
                       fontSize: 18,
                       fontWeight: 700,
                       color: "var(--text)",
@@ -1015,7 +1007,6 @@ export default function Quote() {
                         Phone{" "}
                         <span
                           style={{
-                            fontFamily: "'Manrope', sans-serif",
                             letterSpacing: 0,
                             textTransform: "none",
                             fontSize: 11,
@@ -1043,7 +1034,6 @@ export default function Quote() {
                         Project notes{" "}
                         <span
                           style={{
-                            fontFamily: "'Manrope', sans-serif",
                             letterSpacing: 0,
                             textTransform: "none",
                             fontSize: 11,

@@ -25,7 +25,6 @@ const fieldBase: React.CSSProperties = {
   border: "1px solid var(--border2)",
   borderRadius: 8,
   padding: "14px 18px",
-  fontFamily: "'Manrope', sans-serif",
   fontSize: 15,
   color: "var(--text)",
   outline: "none",
@@ -39,7 +38,6 @@ const errorStyle: React.CSSProperties = {
   fontSize: 12,
   color: "var(--error)",
   marginTop: 8,
-  fontFamily: "'Manrope', sans-serif",
 };
 
 type FormState = {
@@ -226,7 +224,6 @@ export default function Contact() {
               </div>
               <h3
                 style={{
-                  fontFamily: "'Manrope', sans-serif",
                   fontSize: 22,
                   fontWeight: 600,
                   color: "var(--text)",

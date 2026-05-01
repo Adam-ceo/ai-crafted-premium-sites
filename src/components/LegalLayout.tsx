@@ -28,7 +28,6 @@ export default function LegalLayout({ title, sections }: LegalLayoutProps) {
           <p className="section-label" style={{ marginTop: 20, marginBottom: 14 }}>Legal</p>
           <h1
             style={{
-              fontFamily: "'Manrope', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(32px, 4.5vw, 48px)",
               letterSpacing: "-0.02em",
@@ -48,7 +47,6 @@ export default function LegalLayout({ title, sections }: LegalLayoutProps) {
               <section key={i}>
                 <h2
                   style={{
-                    fontFamily: "'Manrope', sans-serif",
                     fontWeight: 600,
                     fontSize: 20,
                     color: "var(--text)",

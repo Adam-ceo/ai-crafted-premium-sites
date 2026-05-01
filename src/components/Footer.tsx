@@ -25,7 +25,6 @@ export default function Footer() {
   };
 
   const linkStyle: React.CSSProperties = {
-    fontFamily: "'Manrope', sans-serif",
     fontSize: 14,
     color: "var(--low)",
     background: "none",

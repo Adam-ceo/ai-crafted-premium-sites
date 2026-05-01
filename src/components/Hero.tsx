@@ -201,7 +201,6 @@ export default function Hero() {
                 </span>
                 <span
                   style={{
-                    fontFamily: "'Manrope', sans-serif",
                     fontSize: 14,
                     color: "var(--low)",
                     textDecoration: "line-through",
@@ -211,7 +210,6 @@ export default function Hero() {
                 </span>
                 <span
                   style={{
-                    fontFamily: "'Manrope', sans-serif",
                     fontSize: 14,
                     color: "var(--text)",
                     fontWeight: 500,

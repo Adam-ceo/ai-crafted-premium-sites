@@ -75,7 +75,6 @@ export default function BlogPost() {
               <section key={i}>
                 <h2
                   style={{
-                    fontFamily: "'Manrope', sans-serif",
                     fontWeight: 700,
                     fontSize: 22,
                     color: "var(--text)",
@@ -153,7 +152,6 @@ export default function BlogPost() {
               <p className="section-label" style={{ marginBottom: 8 }}>Next article</p>
               <p
                 style={{
-                  fontFamily: "'Manrope', sans-serif",
                   fontSize: 17,
                   fontWeight: 600,
                   color: "var(--text)",

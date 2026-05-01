@@ -169,7 +169,6 @@ export default function Nav() {
                   <Link
                     to={l.to}
                     style={{
-                      fontFamily: "'Manrope', sans-serif",
                       fontSize: 13.5,
                       fontWeight: 450,
                       color: baseColor,
@@ -186,7 +185,6 @@ export default function Nav() {
                     type="button"
                     onClick={() => goToSection(l.id!)}
                     style={{
-                      fontFamily: "'Manrope', sans-serif",
                       fontSize: 13.5,
                       fontWeight: 450,
                       color: "var(--mid)",
@@ -269,7 +267,6 @@ export default function Nav() {
                           padding: "10px 14px",
                           minHeight: 44,
                           fontSize: 13,
-                          fontFamily: "'Manrope', sans-serif",
                           color: "var(--mid)",
                           background: "transparent",
                           border: "none",
@@ -384,7 +381,6 @@ export default function Nav() {
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "space-between",
-                            fontFamily: "'Manrope', sans-serif",
                             fontSize: 22,
                             fontWeight: 600,
                             letterSpacing: "-0.01em",
@@ -406,7 +402,6 @@ export default function Nav() {
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "space-between",
-                            fontFamily: "'Manrope', sans-serif",
                             fontSize: 22,
                             fontWeight: 600,
                             letterSpacing: "-0.01em",

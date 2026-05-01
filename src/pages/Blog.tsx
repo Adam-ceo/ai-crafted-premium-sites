@@ -142,7 +142,6 @@ export default function Blog() {
                 </div>
                 <h3
                   style={{
-                    fontFamily: "'Manrope', sans-serif",
                     fontSize: 20,
                     fontWeight: 600,
                     color: "var(--text)",

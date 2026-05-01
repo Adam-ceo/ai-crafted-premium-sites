@@ -128,7 +128,6 @@ function PricingCard({ plan, index }: PricingCardProps) {
       <div style={{ marginBottom: 20 }}>
         <p
           style={{
-            fontFamily: "'Manrope', sans-serif",
             fontWeight: 800,
             fontSize: 22,
             letterSpacing: "-0.02em",
@@ -314,7 +313,6 @@ export default function Pricing() {
           <h2
             id="pricing-heading"
             style={{
-              fontFamily: "'Manrope', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(28px, 4vw, 48px)",
               lineHeight: 1.1,

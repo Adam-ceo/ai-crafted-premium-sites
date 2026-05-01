@@ -90,7 +90,6 @@ function ServiceCard({ service, index }: ServiceCardProps) {
       </div>
       <h3
         style={{
-          fontFamily: "'Manrope', sans-serif",
           fontSize: 17,
           fontWeight: 600,
           color: "var(--text)",
@@ -114,7 +113,6 @@ function ServiceCard({ service, index }: ServiceCardProps) {
               padding: "3px 9px",
               fontSize: 11,
               color: "var(--low)",
-              fontFamily: "'Manrope', sans-serif",
             }}
           >
             {t}
@@ -181,7 +179,6 @@ export default function Services() {
           <h2
             id="services-heading"
             style={{
-              fontFamily: "'Manrope', sans-serif",
               fontWeight: 600,
               fontSize: "clamp(28px, 4vw, 44px)",
               lineHeight: 1.15,
