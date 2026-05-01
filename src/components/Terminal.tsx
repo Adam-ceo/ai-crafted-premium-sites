@@ -12,7 +12,7 @@ const lines = [
 // Override line colors for the dark terminal surface so they stay readable
 const LINE_COLORS: Record<string, string> = {
   "var(--mid)":  "#8C8C8C",
-  "var(--gold)": "#C9A84C",
+  "var(--gold)": "var(--gold)",
   "var(--text)": "#F0F0F0",
 };
 
@@ -128,7 +128,7 @@ export default function Terminal() {
                     display: "inline-block",
                     width: 8,
                     height: 14,
-                    background: "#C9A84C",
+                    background: "var(--gold)",
                     verticalAlign: "text-bottom",
                     marginLeft: 2,
                   }}
