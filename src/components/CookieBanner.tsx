@@ -70,7 +70,7 @@ export default function CookieBanner() {
                 className="font-sans transition-all duration-150"
                 style={{
                   backgroundColor: "var(--gold)",
-                  color: "#FFFFFF",
+                  color: "var(--surface)",
                   borderRadius: "6px",
                   padding: "0 18px",
                   height: 40,
