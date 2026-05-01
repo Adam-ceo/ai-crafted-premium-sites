@@ -365,6 +365,10 @@ a { color: inherit; }
 
 /* Robust mobile layering */
 body.mobile-menu-open { overflow: hidden; }
+/* Hide low-priority fixed UI when the mobile menu overlay is open
+   so it can't accidentally intercept taps on menu links/buttons. */
+body.mobile-menu-open [data-sonner-toaster],
+body.mobile-menu-open .back-to-top-btn { display: none !important; }
 
 /* Hamburger button — robust across browsers/devices */
 .nav-burger {
