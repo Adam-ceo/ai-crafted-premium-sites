@@ -32,23 +32,21 @@ export default function Nav() {
   const isHome = location.pathname === "/";
 
   // Lock body scroll + close on Escape when mobile menu is open.
-  // overflow:hidden alone is ignored by iOS Safari — position:fixed is required.
+  // Using overflow:hidden on html+body (NOT position:fixed) so that
+  // child portals using position:fixed still anchor to the visual viewport
+  // on iOS Safari — position:fixed on <body> breaks fixed descendants.
   useEffect(() => {
     if (!menuOpen) return;
-    const scrollY = window.scrollY;
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     const body = document.body;
+    const html = document.documentElement;
     const prev = {
-      overflow: body.style.overflow,
-      position: body.style.position,
-      top: body.style.top,
-      width: body.style.width,
+      bodyOverflow: body.style.overflow,
+      htmlOverflow: html.style.overflow,
       paddingRight: body.style.paddingRight,
     };
     body.style.overflow = "hidden";
-    body.style.position = "fixed";
-    body.style.top = `-${scrollY}px`;
-    body.style.width = "100%";
+    html.style.overflow = "hidden";
     if (scrollbarWidth > 0) body.style.paddingRight = `${scrollbarWidth}px`;
     body.classList.add("mobile-menu-open");
     const onKey = (e: KeyboardEvent) => {
@@ -59,14 +57,10 @@ export default function Nav() {
     };
     window.addEventListener("keydown", onKey);
     return () => {
-      body.style.overflow = prev.overflow;
-      body.style.position = prev.position;
-      body.style.top = prev.top;
-      body.style.width = prev.width;
+      body.style.overflow = prev.bodyOverflow;
+      html.style.overflow = prev.htmlOverflow;
       body.style.paddingRight = prev.paddingRight;
       body.classList.remove("mobile-menu-open");
-      // Restore scroll position lost when position:fixed was applied
-      window.scrollTo({ top: scrollY, behavior: "instant" });
       window.removeEventListener("keydown", onKey);
     };
   }, [menuOpen]);
