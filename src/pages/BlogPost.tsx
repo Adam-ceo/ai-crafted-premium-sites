@@ -40,7 +40,7 @@ export default function BlogPost() {
                   padding: "4px 12px",
                   fontSize: 11,
                   color: "var(--mid)",
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "var(--ff-mono)",
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
                 }}
@@ -59,7 +59,7 @@ export default function BlogPost() {
             </h1>
             <p
               style={{
-                fontFamily: "'Newsreader', serif",
+                fontFamily: "var(--ff-serif)",
                 fontStyle: "italic",
                 fontSize: 19,
                 lineHeight: 1.7,
@@ -75,7 +75,6 @@ export default function BlogPost() {
               <section key={i}>
                 <h2
                   style={{
-                    fontFamily: "'Manrope', sans-serif",
                     fontWeight: 700,
                     fontSize: 22,
                     color: "var(--text)",
@@ -153,7 +152,6 @@ export default function BlogPost() {
               <p className="section-label" style={{ marginBottom: 8 }}>Next article</p>
               <p
                 style={{
-                  fontFamily: "'Manrope', sans-serif",
                   fontSize: 17,
                   fontWeight: 600,
                   color: "var(--text)",

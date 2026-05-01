@@ -122,7 +122,7 @@ export default function Hero() {
             >
               <span
                 style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "var(--ff-mono)",
                   fontSize: 11,
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
@@ -147,7 +147,7 @@ export default function Hero() {
               <span />
               <span
                 style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "var(--ff-mono)",
                   fontSize: 10,
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
@@ -158,7 +158,7 @@ export default function Hero() {
               </span>
               <span
                 style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "var(--ff-mono)",
                   fontSize: 10,
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
@@ -190,7 +190,7 @@ export default function Hero() {
               >
                 <span
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "var(--ff-mono)",
                     fontSize: 11,
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
@@ -201,7 +201,6 @@ export default function Hero() {
                 </span>
                 <span
                   style={{
-                    fontFamily: "'Manrope', sans-serif",
                     fontSize: 14,
                     color: "var(--low)",
                     textDecoration: "line-through",
@@ -211,7 +210,6 @@ export default function Hero() {
                 </span>
                 <span
                   style={{
-                    fontFamily: "'Manrope', sans-serif",
                     fontSize: 14,
                     color: "var(--text)",
                     fontWeight: 500,

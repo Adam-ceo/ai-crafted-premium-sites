@@ -67,7 +67,7 @@ function WhyItem({ item, index }: WhyItemProps) {
         <div style={{ flexShrink: 0, width: 36, paddingTop: 2 }}>
           <span
             style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "var(--ff-mono)",
               fontSize: 11,
               fontWeight: 700,
               color: "var(--gold)",
@@ -82,7 +82,6 @@ function WhyItem({ item, index }: WhyItemProps) {
         <div style={{ flex: 1, minWidth: 0 }}>
           <h3
             style={{
-              fontFamily: "'Manrope', sans-serif",
               fontWeight: 700,
               fontSize: 16,
               color: "var(--text)",
@@ -130,7 +129,6 @@ export default function WhyUs() {
           <h2
             id="why-heading"
             style={{
-              fontFamily: "'Manrope', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(28px, 4vw, 44px)",
               lineHeight: 1.1,

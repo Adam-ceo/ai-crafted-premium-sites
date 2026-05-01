@@ -90,7 +90,6 @@ function ServiceCard({ service, index }: ServiceCardProps) {
       </div>
       <h3
         style={{
-          fontFamily: "'Manrope', sans-serif",
           fontSize: 17,
           fontWeight: 600,
           color: "var(--text)",
@@ -114,7 +113,6 @@ function ServiceCard({ service, index }: ServiceCardProps) {
               padding: "3px 9px",
               fontSize: 11,
               color: "var(--low)",
-              fontFamily: "'Manrope', sans-serif",
             }}
           >
             {t}
@@ -129,7 +127,7 @@ function ServiceCard({ service, index }: ServiceCardProps) {
           <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
             <div
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "var(--ff-mono)",
                 fontSize: 15,
                 color: "var(--gold)",
               }}
@@ -138,7 +136,7 @@ function ServiceCard({ service, index }: ServiceCardProps) {
             </div>
             <div
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "var(--ff-mono)",
                 fontSize: 12,
                 color: "var(--low)",
                 textDecoration: "line-through",
@@ -181,7 +179,6 @@ export default function Services() {
           <h2
             id="services-heading"
             style={{
-              fontFamily: "'Manrope', sans-serif",
               fontWeight: 600,
               fontSize: "clamp(28px, 4vw, 44px)",
               lineHeight: 1.15,

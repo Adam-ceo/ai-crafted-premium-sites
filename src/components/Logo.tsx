@@ -24,11 +24,11 @@ export default function Logo({ size = 28 }: LogoProps) {
         <circle cx="14" cy="14" r="1.6" fill="var(--gold)" />
       </svg>
       <span
+        className="font-sans"
         style={{
-          fontFamily: "'Manrope', sans-serif",
-          fontWeight: 700,
-          fontSize: 12,
-          letterSpacing: "0.12em",
+          fontWeight: "var(--fw-bold)",
+          fontSize: "var(--text-xs)",
+          letterSpacing: "var(--ls-mono-sm)",
           textTransform: "uppercase",
           color: "var(--text)",
         }}

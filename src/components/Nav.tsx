@@ -169,9 +169,8 @@ export default function Nav() {
                   <Link
                     to={l.to}
                     style={{
-                      fontFamily: "'Manrope', sans-serif",
                       fontSize: 13.5,
-                      fontWeight: 450,
+                      fontWeight: 500,
                       color: baseColor,
                       textDecoration: "none",
                       transition: "color 0.15s",
@@ -186,9 +185,8 @@ export default function Nav() {
                     type="button"
                     onClick={() => goToSection(l.id!)}
                     style={{
-                      fontFamily: "'Manrope', sans-serif",
                       fontSize: 13.5,
-                      fontWeight: 450,
+                      fontWeight: 500,
                       color: "var(--mid)",
                       background: "none",
                       border: "none",
@@ -215,7 +213,7 @@ export default function Nav() {
               style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--gold)", display: "inline-block" }}
               aria-hidden="true"
             />
-            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--low)" }}>
+            <span style={{ fontFamily: "var(--ff-mono)", fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--low)" }}>
               Available
             </span>
           </div>
@@ -269,7 +267,6 @@ export default function Nav() {
                           padding: "10px 14px",
                           minHeight: 44,
                           fontSize: 13,
-                          fontFamily: "'Manrope', sans-serif",
                           color: "var(--mid)",
                           background: "transparent",
                           border: "none",
@@ -384,7 +381,6 @@ export default function Nav() {
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "space-between",
-                            fontFamily: "'Manrope', sans-serif",
                             fontSize: 22,
                             fontWeight: 600,
                             letterSpacing: "-0.01em",
@@ -406,7 +402,6 @@ export default function Nav() {
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "space-between",
-                            fontFamily: "'Manrope', sans-serif",
                             fontSize: 22,
                             fontWeight: 600,
                             letterSpacing: "-0.01em",
@@ -458,7 +453,7 @@ export default function Nav() {
                       style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--gold)", display: "inline-block" }}
                       aria-hidden="true"
                     />
-                    <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--low)" }}>
+                    <span style={{ fontFamily: "var(--ff-mono)", fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--low)" }}>
                       Available for new projects
                     </span>
                   </div>

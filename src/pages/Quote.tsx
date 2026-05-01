@@ -174,7 +174,7 @@ function validateField(name: keyof FormState, value: string | boolean): string |
 
 const labelStyle: React.CSSProperties = {
   display: "block",
-  fontFamily: "'JetBrains Mono', monospace",
+  fontFamily: "var(--ff-mono)",
   fontSize: 10,
   letterSpacing: "0.14em",
   textTransform: "uppercase",
@@ -188,7 +188,6 @@ const fieldBase: React.CSSProperties = {
   border: "1px solid var(--border2)",
   borderRadius: 8,
   padding: "13px 16px",
-  fontFamily: "'Manrope', sans-serif",
   fontSize: 14,
   color: "var(--text)",
   outline: "none",
@@ -419,7 +418,7 @@ export default function Quote() {
                   <div>
                     <p
                       style={{
-                        fontFamily: "'JetBrains Mono', monospace",
+                        fontFamily: "var(--ff-mono)",
                         fontSize: 10,
                         letterSpacing: "0.14em",
                         textTransform: "uppercase",
@@ -431,8 +430,7 @@ export default function Quote() {
                     </p>
                     <h2
                       style={{
-                        fontFamily: "'Manrope', sans-serif",
-                        fontWeight: 800,
+                        fontWeight: 700,
                         fontSize: 22,
                         letterSpacing: "-0.02em",
                         color: isFeatured ? "var(--gold)" : "var(--text)",
@@ -446,7 +444,7 @@ export default function Quote() {
                   <div style={{ textAlign: "right" }}>
                     <div
                       style={{
-                        fontFamily: "'JetBrains Mono', monospace",
+                        fontFamily: "var(--ff-mono)",
                         fontSize: 26,
                         fontWeight: 500,
                         color: isFeatured ? "var(--gold)" : "var(--text)",
@@ -458,7 +456,7 @@ export default function Quote() {
                     </div>
                     <div
                       style={{
-                        fontFamily: "'JetBrains Mono', monospace",
+                        fontFamily: "var(--ff-mono)",
                         fontSize: 10,
                         color: "var(--low)",
                         marginTop: 5,
@@ -509,7 +507,6 @@ export default function Quote() {
                     cursor: "pointer",
                     fontSize: 13,
                     fontWeight: 600,
-                    fontFamily: "'Manrope', sans-serif",
                     letterSpacing: "0.01em",
                     color: showPlanPicker ? "var(--text)" : "#fff",
                     display: "inline-flex",
@@ -580,7 +577,6 @@ export default function Quote() {
                           <div>
                             <div
                               style={{
-                                fontFamily: "'Manrope', sans-serif",
                                 fontWeight: 600,
                                 fontSize: 13,
                                 color: active ? "var(--gold)" : "var(--text)",
@@ -591,7 +587,7 @@ export default function Quote() {
                               {active && (
                                 <span
                                   style={{
-                                    fontFamily: "'JetBrains Mono', monospace",
+                                    fontFamily: "var(--ff-mono)",
                                     fontSize: 9,
                                     letterSpacing: "0.1em",
                                     textTransform: "uppercase",
@@ -606,7 +602,7 @@ export default function Quote() {
                             </div>
                             <div
                               style={{
-                                fontFamily: "'JetBrains Mono', monospace",
+                                fontFamily: "var(--ff-mono)",
                                 fontSize: 10,
                                 color: "var(--low)",
                               }}
@@ -616,7 +612,7 @@ export default function Quote() {
                           </div>
                           <div
                             style={{
-                              fontFamily: "'JetBrains Mono', monospace",
+                              fontFamily: "var(--ff-mono)",
                               fontSize: 12,
                               fontWeight: 500,
                               color: active ? "var(--gold)" : "var(--mid)",
@@ -638,7 +634,6 @@ export default function Quote() {
                   <div style={{ marginBottom: 18 }}>
                     <h3
                       style={{
-                        fontFamily: "'Manrope', sans-serif",
                         fontWeight: 700,
                         fontSize: 16,
                         color: "var(--text)",
@@ -714,7 +709,6 @@ export default function Quote() {
                           <div style={{ flex: 1, minWidth: 0 }}>
                             <div
                               style={{
-                                fontFamily: "'Manrope', sans-serif",
                                 fontSize: 13,
                                 fontWeight: 600,
                                 color: "var(--text)",
@@ -731,7 +725,7 @@ export default function Quote() {
                           {/* Price */}
                           <div
                             style={{
-                              fontFamily: "'JetBrains Mono', monospace",
+                              fontFamily: "var(--ff-mono)",
                               fontSize: 13,
                               color: on ? "var(--gold)" : "var(--mid)",
                               fontWeight: 500,
@@ -760,7 +754,7 @@ export default function Quote() {
                 >
                   <p
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "var(--ff-mono)",
                       fontSize: 10,
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",
@@ -793,7 +787,7 @@ export default function Quote() {
                 >
                   <p
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "var(--ff-mono)",
                       fontSize: 10,
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
@@ -809,7 +803,7 @@ export default function Quote() {
                     key={totalEstimate}
                     className="lx-fade-up"
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "var(--ff-mono)",
                       fontSize: 36,
                       fontWeight: 500,
                       color: "var(--gold)",
@@ -906,7 +900,6 @@ export default function Quote() {
                   </div>
                   <h3
                     style={{
-                      fontFamily: "'Manrope', sans-serif",
                       fontSize: 20,
                       fontWeight: 700,
                       color: "var(--text)",
@@ -936,7 +929,6 @@ export default function Quote() {
                 >
                   <h3
                     style={{
-                      fontFamily: "'Manrope', sans-serif",
                       fontSize: 18,
                       fontWeight: 700,
                       color: "var(--text)",
@@ -1015,7 +1007,6 @@ export default function Quote() {
                         Phone{" "}
                         <span
                           style={{
-                            fontFamily: "'Manrope', sans-serif",
                             letterSpacing: 0,
                             textTransform: "none",
                             fontSize: 11,
@@ -1043,7 +1034,6 @@ export default function Quote() {
                         Project notes{" "}
                         <span
                           style={{
-                            fontFamily: "'Manrope', sans-serif",
                             letterSpacing: 0,
                             textTransform: "none",
                             fontSize: 11,

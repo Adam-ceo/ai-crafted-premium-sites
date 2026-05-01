@@ -128,8 +128,7 @@ function PricingCard({ plan, index }: PricingCardProps) {
       <div style={{ marginBottom: 20 }}>
         <p
           style={{
-            fontFamily: "'Manrope', sans-serif",
-            fontWeight: 800,
+            fontWeight: 700,
             fontSize: 22,
             letterSpacing: "-0.02em",
             color: plan.featured ? "var(--gold)" : "var(--text)",
@@ -142,7 +141,7 @@ function PricingCard({ plan, index }: PricingCardProps) {
         {plan.featured && (
           <p
             style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "var(--ff-mono)",
               fontSize: 10,
               color: "var(--gold)",
               letterSpacing: "0.12em",
@@ -160,7 +159,7 @@ function PricingCard({ plan, index }: PricingCardProps) {
       <div style={{ marginBottom: 6 }}>
         <p
           style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "var(--ff-mono)",
             fontSize: 10,
             color: "var(--low)",
             textTransform: "uppercase",
@@ -180,7 +179,7 @@ function PricingCard({ plan, index }: PricingCardProps) {
         >
           <div
             style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "var(--ff-mono)",
               fontWeight: 500,
               fontSize: plan.featured ? 46 : 40,
               color: plan.featured ? "var(--gold)" : "var(--text)",
@@ -193,7 +192,7 @@ function PricingCard({ plan, index }: PricingCardProps) {
           {plan.originalPrice && (
             <span
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "var(--ff-mono)",
                 fontSize: 18,
                 color: "var(--low)",
                 textDecoration: "line-through",
@@ -206,7 +205,7 @@ function PricingCard({ plan, index }: PricingCardProps) {
         {plan.promoNote && (
           <p
             style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "var(--ff-mono)",
               fontSize: 10,
               color: "var(--gold)",
               letterSpacing: "0.12em",
@@ -225,7 +224,7 @@ function PricingCard({ plan, index }: PricingCardProps) {
         <Clock size={11} color="var(--low)" />
         <span
           style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "var(--ff-mono)",
             fontSize: 11,
             color: "var(--low)",
           }}
@@ -314,7 +313,6 @@ export default function Pricing() {
           <h2
             id="pricing-heading"
             style={{
-              fontFamily: "'Manrope', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(28px, 4vw, 48px)",
               lineHeight: 1.1,

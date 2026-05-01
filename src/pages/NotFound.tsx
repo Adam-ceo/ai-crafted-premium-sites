@@ -9,38 +9,45 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-grid" style={{ backgroundColor: "#0F0F0F" }}>
+    <div
+      className="flex min-h-screen items-center justify-center"
+      style={{ backgroundColor: "var(--bg)" }}
+    >
       <div className="text-center px-6">
         <p
           className="font-mono mb-6"
-          style={{ fontSize: "13px", letterSpacing: "0.12em", color: "#C9A84C", textTransform: "uppercase" }}
+          style={{
+            fontSize: "var(--text-sm)",
+            letterSpacing: "var(--ls-mono-sm)",
+            color: "var(--gold)",
+            textTransform: "uppercase",
+          }}
         >
           Error 404
         </p>
         <h1
           className="font-serif font-light mb-5"
-          style={{ fontSize: "clamp(48px, 8vw, 88px)", lineHeight: 1.05, letterSpacing: "-0.02em", color: "#FFFFFF" }}
+          style={{
+            fontSize: "var(--text-4xl)",
+            lineHeight: 1.05,
+            letterSpacing: "var(--ls-snug)",
+            color: "var(--text)",
+          }}
         >
           Page not found.
         </h1>
         <p
           className="font-sans mb-10 mx-auto"
-          style={{ fontSize: "16px", color: "#A1A1AA", lineHeight: 1.65, maxWidth: 460 }}
+          style={{
+            fontSize: "var(--text-md)",
+            color: "var(--low)",
+            lineHeight: 1.65,
+            maxWidth: 460,
+          }}
         >
           The page you're looking for doesn't exist or has been moved.
         </p>
-        <Link
-          to="/"
-          className="inline-flex items-center font-sans transition-all duration-200"
-          style={{
-            backgroundColor: "#C9A84C",
-            color: "#0F0F0F",
-            borderRadius: "6px",
-            padding: "14px 28px",
-            fontSize: "14px",
-            fontWeight: 600,
-          }}
-        >
+        <Link to="/" className="btn-gold">
           ← Back to home
         </Link>
       </div>

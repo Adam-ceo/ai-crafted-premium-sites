@@ -75,7 +75,7 @@ function StepItem({ step, index, isLast }: StepItemProps) {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "var(--ff-mono)",
             fontSize: 12,
             fontWeight: 700,
             color: "var(--gold)",
@@ -122,7 +122,6 @@ function StepItem({ step, index, isLast }: StepItemProps) {
         >
           <h3
             style={{
-              fontFamily: "'Manrope', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(18px, 2.2vw, 24px)",
               color: "var(--text)",
@@ -196,7 +195,6 @@ export default function Process() {
             <h2
               id="process-heading"
               style={{
-                fontFamily: "'Manrope', sans-serif",
                 fontWeight: 700,
                 fontSize: "clamp(28px, 4vw, 48px)",
                 lineHeight: 1.1,

@@ -84,7 +84,6 @@ function TestimonialCard({ t, index }: { t: Testimonial; index: number }) {
       >
         <p
           style={{
-            fontFamily: "'Manrope', sans-serif",
             fontWeight: 600,
             fontSize: 14,
             color: "var(--text)",
@@ -95,7 +94,7 @@ function TestimonialCard({ t, index }: { t: Testimonial; index: number }) {
         </p>
         <p
           style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "var(--ff-mono)",
             fontSize: 10,
             letterSpacing: "0.12em",
             textTransform: "uppercase",
