@@ -350,7 +350,7 @@ export default function Nav() {
                 right: 0,
                 bottom: 0,
                 zIndex: 200,
-                background: "var(--bg)",
+                background: "color-mix(in srgb, var(--bg) 98.5%, transparent)",
                 borderTop: "1px solid var(--border-c)",
                 overflowY: "auto",
                 WebkitOverflowScrolling: "touch",
