@@ -204,45 +204,91 @@
    TYPOGRAPHY UTILITIES
    ============================================ */
 @layer utilities {
+  /* Display (serif) variants */
   .display-serif {
-    font-family: 'Newsreader', Georgia, serif;
-    font-weight: 300;
+    font-family: var(--ff-serif);
+    font-weight: var(--fw-light);
     line-height: 1.05;
     letter-spacing: -0.025em;
     color: var(--text);
   }
+  .display-xl {
+    font-family: var(--ff-serif);
+    font-weight: var(--fw-light);
+    font-size: var(--text-4xl);
+    line-height: 1.05;
+    letter-spacing: var(--ls-tight);
+    color: var(--text);
+  }
+  .display-lg {
+    font-family: var(--ff-serif);
+    font-weight: var(--fw-light);
+    font-size: var(--text-3xl);
+    line-height: 1.1;
+    letter-spacing: var(--ls-snug);
+    color: var(--text);
+  }
+  .display-md {
+    font-family: var(--ff-serif);
+    font-weight: var(--fw-light);
+    font-size: var(--text-2xl);
+    line-height: 1.15;
+    letter-spacing: var(--ls-snug);
+    color: var(--text);
+  }
 
+  /* Mono labels */
   .section-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.18em;
+    font-family: var(--ff-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--ls-mono);
     text-transform: uppercase;
     color: var(--low);
   }
-
   .eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.14em;
+    font-family: var(--ff-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--ls-mono);
     text-transform: uppercase;
     color: var(--gold);
   }
+  .label-mono {
+    font-family: var(--ff-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--ls-mono-sm);
+    text-transform: uppercase;
+    color: var(--mid);
+    font-weight: var(--fw-medium);
+  }
 
+  /* Body */
   .body-lg {
-    font-size: 17px;
+    font-size: var(--text-md);
     line-height: 1.75;
     color: var(--mid);
   }
-
+  .body-base {
+    font-size: var(--text-base);
+    line-height: 1.7;
+    color: var(--mid);
+  }
   .body-sm {
-    font-size: 14px;
+    font-size: var(--text-sm);
     line-height: 1.65;
     color: var(--mid);
   }
 
-  .font-serif { font-family: 'Newsreader', Georgia, serif; }
-  .font-sans  { font-family: 'Manrope', system-ui, sans-serif; }
-  .font-mono  { font-family: 'JetBrains Mono', monospace; }
+  /* Font family helpers */
+  .font-serif { font-family: var(--ff-serif); }
+  .font-sans  { font-family: var(--ff-sans); }
+  .font-mono  { font-family: var(--ff-mono); }
+
+  /* Card surface */
+  .card-surface {
+    background: var(--card-bg);
+    border: 1px solid var(--border-c);
+    border-radius: var(--r-xl);
+  }
 }
 
 /* ============================================
