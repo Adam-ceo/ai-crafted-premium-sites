@@ -21,6 +21,7 @@ export default function BackToTop() {
           transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           aria-label="Back to top"
+          className="back-to-top-btn"
           style={{
             position: "fixed",
             bottom: 32,
