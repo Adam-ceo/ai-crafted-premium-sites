@@ -1147,7 +1147,7 @@ export default function Quote() {
                     {[
                       { icon: Clock, text: "Response within 24 hours" },
                       { icon: Shield, text: "No payment required to enquire" },
-                      { icon: MessageCircle, text: "Free 30-minute discovery call included" },
+                      { icon: MessageCircle, text: "Free initial email consultation included" },
                     ].map(({ icon: Icon, text }) => (
                       <div
                         key={text}
