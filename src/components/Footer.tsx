@@ -16,9 +16,9 @@ export default function Footer() {
   };
 
   const sectionLabel: React.CSSProperties = {
-    fontFamily: "'JetBrains Mono', monospace",
-    fontSize: 10,
-    letterSpacing: "0.18em",
+    fontFamily: "var(--ff-mono)",
+    fontSize: "var(--text-xs)",
+    letterSpacing: "var(--ls-mono)",
     textTransform: "uppercase",
     color: "var(--low)",
     marginBottom: 20,
