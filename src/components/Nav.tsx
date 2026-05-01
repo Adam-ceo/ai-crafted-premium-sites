@@ -116,10 +116,13 @@ export default function Nav() {
     setMenuOpen(false);
     setDropdownOpen(false);
     if (isHome) {
-      scrollToSection(id);
+      // Wait a frame so the body scroll-lock is released before scrolling.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => scrollToSection(id));
+      });
     } else {
       navigate("/");
-      setTimeout(() => scrollToSection(id), 120);
+      setTimeout(() => scrollToSection(id), 150);
     }
   }, [isHome, navigate]);
 
