@@ -96,50 +96,6 @@ export default function Hero() {
             </button>
           </motion.div>
 
-          {/* Social proof — placeholder testimonial */}
-          <motion.div
-            variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
-            transition={{ duration: 0.5 }}
-            style={{
-              borderTop: "1px solid var(--border-c)",
-              paddingTop: 24,
-              marginTop: 8,
-            }}
-          >
-            <div style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
-              <Quote
-                size={18}
-                color="var(--gold)"
-                style={{ flexShrink: 0, marginTop: 2, opacity: 0.7 }}
-              />
-              <div>
-                <p
-                  className="font-serif"
-                  style={{
-                    fontSize: 15,
-                    fontStyle: "italic",
-                    color: "var(--mid)",
-                    lineHeight: 1.65,
-                    marginBottom: 10,
-                  }}
-                >
-                  "Exactly what we needed — delivered ahead of schedule.
-                  The quality blew our previous agency out of the water."
-                </p>
-                <p
-                  style={{
-                    fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: 10,
-                    letterSpacing: "0.12em",
-                    textTransform: "uppercase",
-                    color: "var(--low)",
-                  }}
-                >
-                  — Thomas K., Founder · SaaS Platform
-                </p>
-              </div>
-            </div>
-          </motion.div>
         </motion.div>
 
         {/* RIGHT — Comparison card */}
