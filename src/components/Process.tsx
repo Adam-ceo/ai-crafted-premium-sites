@@ -13,7 +13,7 @@ const steps: Step[] = [
     n: "01",
     days: "Days 1–2",
     name: "Discovery & Brief",
-    desc: "A focused 60-minute call where we extract everything we need — your goals, your audience, your constraints. No lengthy questionnaires. No wasted weeks.",
+    desc: "A focused email-based deep dive where we extract everything we need — your goals, your audience, your constraints. No lengthy questionnaires. No time-consuming calls. Just efficient communication that keeps the project moving.",
     detail: "You receive a written brief summary for approval before we proceed.",
   },
   {
