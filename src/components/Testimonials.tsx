@@ -57,7 +57,7 @@ function TestimonialCard({ t, index }: { t: Testimonial; index: number }) {
           style={{ opacity: 0.7, flexShrink: 0 }}
           aria-hidden="true"
         />
-        <div aria-label="5 out of 5 stars" style={{ display: "flex", gap: 2 }}>
+        <div role="img" aria-label="Rated 5 out of 5 stars" style={{ display: "flex", gap: 2 }}>
           {[...Array(5)].map((_, i) => (
             <span key={i} aria-hidden="true" style={{ color: "var(--gold)", fontSize: 12 }}>★</span>
           ))}

@@ -1,15 +1,17 @@
+import { lazy, Suspense } from "react";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import Process from "@/components/Process";
-import Pricing from "@/components/Pricing";
-import WhyUs from "@/components/WhyUs";
-import Testimonials from "@/components/Testimonials";
-import CtaBanner from "@/components/CtaBanner";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-import CookieBanner from "@/components/CookieBanner";
-import BackToTop from "@/components/BackToTop";
+
+const Services     = lazy(() => import("@/components/Services"));
+const Process      = lazy(() => import("@/components/Process"));
+const Pricing      = lazy(() => import("@/components/Pricing"));
+const WhyUs        = lazy(() => import("@/components/WhyUs"));
+const Testimonials = lazy(() => import("@/components/Testimonials"));
+const CtaBanner    = lazy(() => import("@/components/CtaBanner"));
+const Contact      = lazy(() => import("@/components/Contact"));
+const Footer       = lazy(() => import("@/components/Footer"));
+const CookieBanner = lazy(() => import("@/components/CookieBanner"));
+const BackToTop    = lazy(() => import("@/components/BackToTop"));
 
 // Set to true once you have real client testimonials to display
 const SHOW_TESTIMONIALS = true;
@@ -20,17 +22,21 @@ export default function Index() {
       <Nav />
       <main id="main">
         <Hero />
-        <Services />
-        <Process />
-        <Pricing />
-        <WhyUs />
-        {SHOW_TESTIMONIALS && <Testimonials />}
-        <CtaBanner />
-        <Contact />
+        <Suspense fallback={null}>
+          <Services />
+          <Process />
+          <Pricing />
+          <WhyUs />
+          {SHOW_TESTIMONIALS && <Testimonials />}
+          <CtaBanner />
+          <Contact />
+        </Suspense>
       </main>
-      <Footer />
-      <CookieBanner />
-      <BackToTop />
+      <Suspense fallback={null}>
+        <Footer />
+        <CookieBanner />
+        <BackToTop />
+      </Suspense>
     </>
   );
 }

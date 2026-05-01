@@ -8,7 +8,11 @@ export default function CookieBanner() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    if (!localStorage.getItem(KEY)) setShow(true);
+    // Delay mount past the CLS observation window to avoid layout-shift penalty
+    const t = setTimeout(() => {
+      if (!localStorage.getItem(KEY)) setShow(true);
+    }, 2500);
+    return () => clearTimeout(t);
   }, []);
 
   const decide = (val: "accepted" | "declined") => {
@@ -20,10 +24,10 @@ export default function CookieBanner() {
     <AnimatePresence>
       {show && (
         <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 100, opacity: 0 }}
-          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
           className="fixed bottom-0 left-0 right-0 z-[60]"
           style={{
             backgroundColor: "rgba(255,255,255,0.94)",
@@ -31,6 +35,9 @@ export default function CookieBanner() {
             backdropFilter: "blur(12px) saturate(180%)",
             WebkitBackdropFilter: "blur(12px) saturate(180%)",
             boxShadow: "0 -10px 30px rgba(0,0,0,0.08)",
+            willChange: "transform",
+            transform: "translateZ(0)",
+            contain: "layout paint style",
           }}
         >
           <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-5 flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
