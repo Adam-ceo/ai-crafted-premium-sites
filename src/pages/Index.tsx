@@ -14,7 +14,7 @@ const CookieBanner = lazy(() => import("@/components/CookieBanner"));
 const BackToTop    = lazy(() => import("@/components/BackToTop"));
 
 // Set to true once you have real client testimonials to display
-const SHOW_TESTIMONIALS = false;
+const SHOW_TESTIMONIALS = true;
 
 export default function Index() {
   return (
