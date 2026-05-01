@@ -170,7 +170,7 @@ export default function Nav() {
                     to={l.to}
                     style={{
                       fontSize: 13.5,
-                      fontWeight: 450,
+                      fontWeight: 500,
                       color: baseColor,
                       textDecoration: "none",
                       transition: "color 0.15s",
@@ -186,7 +186,7 @@ export default function Nav() {
                     onClick={() => goToSection(l.id!)}
                     style={{
                       fontSize: 13.5,
-                      fontWeight: 450,
+                      fontWeight: 500,
                       color: "var(--mid)",
                       background: "none",
                       border: "none",

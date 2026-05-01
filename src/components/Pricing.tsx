@@ -128,7 +128,7 @@ function PricingCard({ plan, index }: PricingCardProps) {
       <div style={{ marginBottom: 20 }}>
         <p
           style={{
-            fontWeight: 800,
+            fontWeight: 700,
             fontSize: 22,
             letterSpacing: "-0.02em",
             color: plan.featured ? "var(--gold)" : "var(--text)",

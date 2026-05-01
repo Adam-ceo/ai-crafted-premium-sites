@@ -430,7 +430,7 @@ export default function Quote() {
                     </p>
                     <h2
                       style={{
-                        fontWeight: 800,
+                        fontWeight: 700,
                         fontSize: 22,
                         letterSpacing: "-0.02em",
                         color: isFeatured ? "var(--gold)" : "var(--text)",
