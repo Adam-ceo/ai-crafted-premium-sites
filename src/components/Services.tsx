@@ -127,7 +127,7 @@ function ServiceCard({ service, index }: ServiceCardProps) {
           <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
             <div
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "var(--ff-mono)",
                 fontSize: 15,
                 color: "var(--gold)",
               }}
@@ -136,7 +136,7 @@ function ServiceCard({ service, index }: ServiceCardProps) {
             </div>
             <div
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "var(--ff-mono)",
                 fontSize: 12,
                 color: "var(--low)",
                 textDecoration: "line-through",

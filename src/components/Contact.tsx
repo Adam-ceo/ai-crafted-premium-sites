@@ -11,7 +11,7 @@ const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string;
 
 const labelStyle: React.CSSProperties = {
   display: "block",
-  fontFamily: "'JetBrains Mono', monospace",
+  fontFamily: "var(--ff-mono)",
   fontSize: 10,
   letterSpacing: "0.14em",
   textTransform: "uppercase",
@@ -337,7 +337,7 @@ export default function Contact() {
 
               <div>
                 <label htmlFor="contact-phone" style={labelStyle}>
-                  Phone <span style={{ color: "var(--low)", fontFamily: "'Manrope', sans-serif", letterSpacing: 0, textTransform: "none", fontSize: 11 }}>(optional)</span>
+                  Phone <span style={{ color: "var(--low)", fontFamily: "var(--ff-sans)", letterSpacing: 0, textTransform: "none", fontSize: 11 }}>(optional)</span>
                 </label>
                 <input
                   id="contact-phone"

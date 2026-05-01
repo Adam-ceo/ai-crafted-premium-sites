@@ -213,7 +213,7 @@ export default function Nav() {
               style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--gold)", display: "inline-block" }}
               aria-hidden="true"
             />
-            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--low)" }}>
+            <span style={{ fontFamily: "var(--ff-mono)", fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--low)" }}>
               Available
             </span>
           </div>
@@ -453,7 +453,7 @@ export default function Nav() {
                       style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--gold)", display: "inline-block" }}
                       aria-hidden="true"
                     />
-                    <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--low)" }}>
+                    <span style={{ fontFamily: "var(--ff-mono)", fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--low)" }}>
                       Available for new projects
                     </span>
                   </div>

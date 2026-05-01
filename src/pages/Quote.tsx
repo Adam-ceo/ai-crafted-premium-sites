@@ -174,7 +174,7 @@ function validateField(name: keyof FormState, value: string | boolean): string |
 
 const labelStyle: React.CSSProperties = {
   display: "block",
-  fontFamily: "'JetBrains Mono', monospace",
+  fontFamily: "var(--ff-mono)",
   fontSize: 10,
   letterSpacing: "0.14em",
   textTransform: "uppercase",
@@ -418,7 +418,7 @@ export default function Quote() {
                   <div>
                     <p
                       style={{
-                        fontFamily: "'JetBrains Mono', monospace",
+                        fontFamily: "var(--ff-mono)",
                         fontSize: 10,
                         letterSpacing: "0.14em",
                         textTransform: "uppercase",
@@ -444,7 +444,7 @@ export default function Quote() {
                   <div style={{ textAlign: "right" }}>
                     <div
                       style={{
-                        fontFamily: "'JetBrains Mono', monospace",
+                        fontFamily: "var(--ff-mono)",
                         fontSize: 26,
                         fontWeight: 500,
                         color: isFeatured ? "var(--gold)" : "var(--text)",
@@ -456,7 +456,7 @@ export default function Quote() {
                     </div>
                     <div
                       style={{
-                        fontFamily: "'JetBrains Mono', monospace",
+                        fontFamily: "var(--ff-mono)",
                         fontSize: 10,
                         color: "var(--low)",
                         marginTop: 5,
@@ -587,7 +587,7 @@ export default function Quote() {
                               {active && (
                                 <span
                                   style={{
-                                    fontFamily: "'JetBrains Mono', monospace",
+                                    fontFamily: "var(--ff-mono)",
                                     fontSize: 9,
                                     letterSpacing: "0.1em",
                                     textTransform: "uppercase",
@@ -602,7 +602,7 @@ export default function Quote() {
                             </div>
                             <div
                               style={{
-                                fontFamily: "'JetBrains Mono', monospace",
+                                fontFamily: "var(--ff-mono)",
                                 fontSize: 10,
                                 color: "var(--low)",
                               }}
@@ -612,7 +612,7 @@ export default function Quote() {
                           </div>
                           <div
                             style={{
-                              fontFamily: "'JetBrains Mono', monospace",
+                              fontFamily: "var(--ff-mono)",
                               fontSize: 12,
                               fontWeight: 500,
                               color: active ? "var(--gold)" : "var(--mid)",
@@ -725,7 +725,7 @@ export default function Quote() {
                           {/* Price */}
                           <div
                             style={{
-                              fontFamily: "'JetBrains Mono', monospace",
+                              fontFamily: "var(--ff-mono)",
                               fontSize: 13,
                               color: on ? "var(--gold)" : "var(--mid)",
                               fontWeight: 500,
@@ -754,7 +754,7 @@ export default function Quote() {
                 >
                   <p
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "var(--ff-mono)",
                       fontSize: 10,
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",
@@ -787,7 +787,7 @@ export default function Quote() {
                 >
                   <p
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "var(--ff-mono)",
                       fontSize: 10,
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
@@ -803,7 +803,7 @@ export default function Quote() {
                     key={totalEstimate}
                     className="lx-fade-up"
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "var(--ff-mono)",
                       fontSize: 36,
                       fontWeight: 500,
                       color: "var(--gold)",

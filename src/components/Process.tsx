@@ -75,7 +75,7 @@ function StepItem({ step, index, isLast }: StepItemProps) {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "var(--ff-mono)",
             fontSize: 12,
             fontWeight: 700,
             color: "var(--gold)",

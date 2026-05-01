@@ -141,7 +141,7 @@ function PricingCard({ plan, index }: PricingCardProps) {
         {plan.featured && (
           <p
             style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "var(--ff-mono)",
               fontSize: 10,
               color: "var(--gold)",
               letterSpacing: "0.12em",
@@ -159,7 +159,7 @@ function PricingCard({ plan, index }: PricingCardProps) {
       <div style={{ marginBottom: 6 }}>
         <p
           style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "var(--ff-mono)",
             fontSize: 10,
             color: "var(--low)",
             textTransform: "uppercase",
@@ -179,7 +179,7 @@ function PricingCard({ plan, index }: PricingCardProps) {
         >
           <div
             style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "var(--ff-mono)",
               fontWeight: 500,
               fontSize: plan.featured ? 46 : 40,
               color: plan.featured ? "var(--gold)" : "var(--text)",
@@ -192,7 +192,7 @@ function PricingCard({ plan, index }: PricingCardProps) {
           {plan.originalPrice && (
             <span
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "var(--ff-mono)",
                 fontSize: 18,
                 color: "var(--low)",
                 textDecoration: "line-through",
@@ -205,7 +205,7 @@ function PricingCard({ plan, index }: PricingCardProps) {
         {plan.promoNote && (
           <p
             style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "var(--ff-mono)",
               fontSize: 10,
               color: "var(--gold)",
               letterSpacing: "0.12em",
@@ -224,7 +224,7 @@ function PricingCard({ plan, index }: PricingCardProps) {
         <Clock size={11} color="var(--low)" />
         <span
           style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "var(--ff-mono)",
             fontSize: 11,
             color: "var(--low)",
           }}

@@ -67,7 +67,7 @@ function WhyItem({ item, index }: WhyItemProps) {
         <div style={{ flexShrink: 0, width: 36, paddingTop: 2 }}>
           <span
             style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "var(--ff-mono)",
               fontSize: 11,
               fontWeight: 700,
               color: "var(--gold)",

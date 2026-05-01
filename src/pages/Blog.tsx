@@ -70,7 +70,7 @@ export default function Blog() {
                   padding: "4px 12px",
                   fontSize: 11,
                   color: "var(--mid)",
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "var(--ff-mono)",
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
                 }}
@@ -131,7 +131,7 @@ export default function Blog() {
                       padding: "3px 10px",
                       fontSize: 10,
                       color: "var(--mid)",
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "var(--ff-mono)",
                       letterSpacing: "0.08em",
                       textTransform: "uppercase",
                     }}

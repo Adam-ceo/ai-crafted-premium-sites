@@ -80,7 +80,7 @@ export default function Terminal() {
             position: "absolute",
             left: "50%",
             transform: "translateX(-50%)",
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "var(--ff-mono)",
             fontSize: 11,
             color: "#4E4E4E",
           }}
@@ -94,7 +94,7 @@ export default function Terminal() {
         className="terminal-body"
         style={{
           padding: "20px 22px 28px",
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "var(--ff-mono)",
           fontSize: 13,
           lineHeight: 1.85,
         }}
