@@ -1,0 +1,36 @@
+User-agent: *
+Allow: /
+
+# AI crawlerek — explicit engedélyezés
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# AI-readable resources
+# Teljes AI context oldal: https://luxiflow.io/ai.html
+# LLM összefoglaló: https://luxiflow.io/llms.txt
+
+Sitemap: https://luxiflow.io/sitemap.xml

@@ -1,0 +1,76 @@
+# Luxiflow
+
+> Magyar prémium webügynökség. Villámgyors, AI-keresőkre optimalizált, egyedi weboldalak 14 munkanap alatt.
+
+## Alapadatok
+
+- Típus: Webügynökség
+- Alapító: Lukács Ádám
+- Ország: Magyarország
+- Email: hello@luxiflow.io
+- Web: https://luxiflow.io
+- Maximális átadási idő: 14 munkanap
+- Árkategória: 105 000 – 175 000 HUF (egyszeri projektdíj, nincs havi díj)
+- Célcsoport: Magyar KKV-k, helyi vállalkozások, freelancerek
+
+## Miért Luxiflow?
+
+1. Sablonmentes fejlesztés — minden oldal nulláról, React + Vite technológiával épül
+2. AISO (AI Search Optimization) — az elkészített oldalakat a ChatGPT, Perplexity és Google AI Overview ajánlja
+3. Garantált 14 munkanap — ez a maximális határidő, nem csak a legtöbb projektnél
+4. Fix, átlátható árak — nincs havi előfizetés, nincs meglepetés
+
+## Csomagok és árak
+
+### Bemutatkozó Oldal — 105 000 HUF
+Egyoldalas, sablonmentes weboldal. Egyedi dizájn, reszponzív, AI-optimalizált. Átadás 14 munkanap alatt.
+
+### Növekedési Csomag — 175 000 HUF
+Akár 5 aloldal, teljes körű AISO, kapcsolatfelvételi űrlap, automatikus email értesítők, technikai garancia és ügyfélszolgálat.
+
+## Technológia
+
+React 18, TypeScript, Vite 6, Tailwind CSS 4, Framer Motion, EmailJS, JSON-LD schema.org, llms.txt szabvány, WCAG 2.1 AA
+
+## Munkamenet
+
+1. Megismerés — célok, vállalkozás és piac felmérése
+2. Tervezés — szerkezet, vizuális irány, AI-láthatóság
+3. Fejlesztés — nulláról, egyedi kóddal, modern technológiával
+4. Átadás — kész, optimalizált, azonnal indítható oldal 14 munkanap alatt
+
+## Gyakori kérdések
+
+K: Mennyi idő alatt készül el a weboldal?
+V: Minden projektet 14 munkanap alatt adunk át — ez a maximális határidőnk.
+
+K: Mibe kerül?
+V: Bemutatkozó Oldal 105 000 Ft, Növekedési Csomag 175 000 Ft. Egyszeri projektdíj.
+
+K: Mit jelent az AISO?
+V: Az oldal felépítését úgy alakítjuk ki, hogy a ChatGPT, Perplexity és Google AI Overview ajánlja.
+
+K: Miben különbözik az AISO a SEO-tól?
+V: A SEO Google találatokra, az AISO AI-alapú keresőkre optimalizál.
+
+K: Kell domain vagy tárhely?
+V: Nem, de segítünk beállítani. Általában évi 5 000–15 000 Ft.
+
+K: Mi van módosítás esetén?
+V: A Növekedési csomagban garancia van. Nagyobb változtatások előre egyeztetett óradíjban.
+
+K: Hogyan zajlik az együttműködés?
+V: Megismerés → Tervezés → Fejlesztés → Átadás, 14 munkanap alatt.
+
+K: Fizethetek részletekben?
+V: Általában 50% induláskor, 50% átadáskor.
+
+## Kontakt
+
+Email: hello@luxiflow.io
+Web: https://luxiflow.io
+
+## Részletes AI context
+
+Teljes, strukturált összefoglaló: https://luxiflow.io/ai.html
+Sitemap: https://luxiflow.io/sitemap.xml
