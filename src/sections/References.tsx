@@ -1,14 +1,6 @@
 import { FadeUp } from '../components/FadeUp';
 import { ArrowRight } from 'lucide-react';
 
-/*
- * NEM DEAD CODE — valódi referencia projektek esetén:
- * 1. Állítsd be a VITE_SHOW_REFERENCES=true értéket a .env fájlban
- * 2. Cseréld le az img src + alt értékeket saját screenshotokra
- * 3. Frissítsd a h3 szövegeket, badge-eket és leírásokat
- * 4. Add vissza a 'Referenciák' elemet a navItems tömbökbe (Navbar + Footer)
- * 5. A hero secondary CTA-t változtasd vissza: href="#referenciak", szöveg: "Munkáink"
- */
 export const References = () => {
   if (import.meta.env.VITE_SHOW_REFERENCES !== 'true') return null;
 
