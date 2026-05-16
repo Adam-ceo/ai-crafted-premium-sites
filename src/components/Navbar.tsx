@@ -69,14 +69,29 @@ export const Navbar = () => {
   }, [isMobileMenuOpen]);
 
   return (
-    <header
-      className={cn(
-        'fixed top-0 inset-x-0 z-50 transition-all duration-300 border-b',
-        isScrolled
-          ? 'bg-white/80 backdrop-blur-xl border-slate-200/50 shadow-[0_4px_30px_rgba(0,0,0,0.03)]'
-          : 'bg-white/0 border-transparent py-2'
-      )}
-    >
+    <>
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: reduceMotion ? 0 : 0.2 }}
+            className="lg:hidden fixed inset-0 z-40 bg-slate-900/40 backdrop-blur-sm"
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+        )}
+      </AnimatePresence>
+      <header
+        className={cn(
+          'fixed top-0 inset-x-0 z-50 transition-all duration-300 border-b',
+          isScrolled
+            ? 'bg-white/80 backdrop-blur-xl border-slate-200/50 shadow-[0_4px_30px_rgba(0,0,0,0.03)]'
+            : 'bg-white/0 border-transparent py-2',
+          isMobileMenuOpen && 'bg-white border-slate-200'
+        )}
+      >
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <a
           href="#"
@@ -167,6 +182,7 @@ export const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+      </header>
+    </>
   );
 };
