@@ -31,6 +31,13 @@ export const Navbar = () => {
   }, []);
 
   useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
+  useEffect(() => {
     if (!isMobileMenuOpen || !menuRef.current) return;
     const focusable = menuRef.current.querySelectorAll<HTMLElement>(
       'a, button, [tabindex]:not([tabindex="-1"])'
@@ -129,11 +136,14 @@ export const Navbar = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobil menü"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: reduceMotion ? 0 : 0.25 }}
-            className="lg:hidden overflow-hidden bg-white/95 backdrop-blur-3xl border-b border-slate-200"
+            className="lg:hidden overflow-hidden bg-white backdrop-blur-3xl border-b border-slate-200"
           >
             <div ref={menuRef} className="px-6 py-6 flex flex-col gap-4">
               {([...navItems, 'Kapcsolat'] as const).map((item) => (
