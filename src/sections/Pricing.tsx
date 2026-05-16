@@ -22,7 +22,6 @@ export const Pricing = () => (
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-center">
-        {/* Basic */}
         <FadeUp delay={0.1}>
           <div className="bg-slate-50 border border-slate-200 rounded-[2rem] p-10 shadow-lg shadow-slate-200/70 hover:shadow-xl hover:shadow-slate-200/80 hover:border-slate-300 transition-all">
             <div className="text-xs font-bold text-slate-400 mb-6 uppercase tracking-widest">
@@ -57,7 +56,6 @@ export const Pricing = () => (
           </div>
         </FadeUp>
 
-        {/* Pro */}
         <FadeUp delay={0.2}>
           <div className="bg-slate-900 border border-slate-800 text-white rounded-[2rem] p-10 lg:-translate-y-3 shadow-2xl shadow-slate-900/40 relative overflow-hidden">
             <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-green-400 to-emerald-600" />

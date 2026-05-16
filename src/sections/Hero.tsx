@@ -114,7 +114,6 @@ export const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Right Side – AI Chat UI */}
         <motion.div
           initial={{ opacity: 0, x: reduceMotion ? 0 : 30 }}
           animate={{ opacity: 1, x: 0 }}

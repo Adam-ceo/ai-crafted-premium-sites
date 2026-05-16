@@ -114,7 +114,7 @@ export const Navbar = () => {
                   href={item === 'Kezdőlap' ? '#' : `#${toAnchor(item)}`}
                   aria-current={isActive ? 'true' : undefined}
                   className={cn(
-                    'text-sm font-semibold transition-colors relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-green-600 after:transition-all after:duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-sm',
+                    'text-sm font-semibold transition-colors relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-green-600 after:transition-all after:duration-300 focus:outline-none rounded-sm',
                     isActive
                       ? 'text-green-600 after:w-full'
                       : 'text-slate-600 hover:text-green-600 after:w-0 hover:after:w-full'
@@ -127,7 +127,7 @@ export const Navbar = () => {
           </nav>
           <a
             href="#kapcsolat"
-            className="bg-slate-900 hover:bg-green-600 text-white px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 hover:shadow-lg hover:shadow-green-600/25 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
+            className="bg-slate-900 hover:bg-slate-800 text-white px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 hover:shadow-lg hover:shadow-slate-900/20 hover:-translate-y-0.5 focus:outline-none"
           >
             Ajánlatkérés
           </a>
@@ -137,7 +137,7 @@ export const Navbar = () => {
           ref={hamburgerRef}
           aria-label={isMobileMenuOpen ? 'Menü bezárása' : 'Menü megnyitása'}
           aria-expanded={isMobileMenuOpen}
-          className="lg:hidden p-2 text-slate-600 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-lg"
+          className="lg:hidden p-2 text-slate-600 focus:outline-none rounded-lg"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? (
@@ -166,7 +166,7 @@ export const Navbar = () => {
                   key={item}
                   href={item === 'Kezdőlap' ? '#' : `#${toAnchor(item)}`}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-lg font-bold text-slate-900 py-2 border-b border-slate-100 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-sm"
+                  className="text-lg font-bold text-slate-900 py-2 border-b border-slate-100 focus:outline-none rounded-sm"
                 >
                   {item}
                 </a>
@@ -174,7 +174,7 @@ export const Navbar = () => {
               <a
                 href="#kapcsolat"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="bg-green-600 text-white text-center py-4 rounded-xl text-base font-bold mt-4 shadow-lg shadow-green-600/20 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-green-600"
+                className="bg-slate-900 text-white text-center py-4 rounded-xl text-base font-bold mt-4 shadow-lg shadow-slate-900/20 focus:outline-none"
               >
                 Ajánlatkérés
               </a>
