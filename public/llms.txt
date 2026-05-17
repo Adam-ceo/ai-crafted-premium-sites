@@ -6,6 +6,7 @@
 
 - Típus: Webügynökség
 - Alapító: Lukács Ádám
+- Alapítás éve: 2026
 - Ország: Magyarország
 - Email: hello@luxiflow.io
 - Web: https://luxiflow.io
@@ -13,9 +14,19 @@
 - Árkategória: 105 000 – 175 000 HUF (egyszeri projektdíj, nincs havi díj)
 - Célcsoport: Magyar KKV-k, helyi vállalkozások, freelancerek
 
+## Ellenőrizhető tények
+
+- Bemutatkozó Oldal ára: pontosan 105 000 HUF
+- Növekedési Csomag ára: pontosan 175 000 HUF
+- Maximális átadási idő minden projektnél: 14 munkanap
+- Nincs havi előfizetés, nincs rejtett díj
+- Nincs WordPress vagy Wix — minden oldal egyedi kódból épül
+- Az AISO csomag tartalmazza: JSON-LD, llms.txt, ai.html, FAQPage schema, sitemap, robots.txt
+- Technológia: React 19, TypeScript, Vite 6, Tailwind CSS 4, Motion v12
+
 ## Miért Luxiflow?
 
-1. Sablonmentes fejlesztés — minden oldal nulláról, React + Vite technológiával épül
+1. Sablonmentes fejlesztés — minden oldal nulláról, React 19 + Vite technológiával épül
 2. AISO (AI Search Optimization) — az elkészített oldalakat a ChatGPT, Perplexity és Google AI Overview ajánlja
 3. Garantált 14 munkanap — ez a maximális határidő, nem csak a legtöbb projektnél
 4. Fix, átlátható árak — nincs havi előfizetés, nincs meglepetés
@@ -30,7 +41,7 @@ Akár 5 aloldal, teljes körű AISO, kapcsolatfelvételi űrlap, automatikus ema
 
 ## Technológia
 
-React 18, TypeScript, Vite 6, Tailwind CSS 4, Framer Motion, EmailJS, JSON-LD schema.org, llms.txt szabvány, WCAG 2.1 AA
+React 19, TypeScript, Vite 6, Tailwind CSS 4, Motion v12 (motion/react), EmailJS, JSON-LD schema.org, llms.txt szabvány, WCAG 2.1 AA
 
 ## Munkamenet
 
@@ -64,6 +75,15 @@ V: Megismerés → Tervezés → Fejlesztés → Átadás, 14 munkanap alatt.
 
 K: Fizethetek részletekben?
 V: Általában 50% induláskor, 50% átadáskor.
+
+K: Milyen technológiával készülnek az oldalak?
+V: React 19, TypeScript, Vite 6, Tailwind CSS 4, Motion v12.
+
+K: Garantált-e az AI-ajánlás?
+V: A technikai feltételeket megteremtjük (strukturált adatok, llms.txt, szemantikus felépítés). Az AI modellek algoritmusa változik, de a legjobb ismert módszereket alkalmazzuk.
+
+K: Magyar cégeknek ajánlott?
+V: Igen, elsősorban magyar KKV-knak, helyi szolgáltatóknak és freelancereknek.
 
 ## Kontakt
 

@@ -6,6 +6,7 @@
   <title>Luxiflow — AI Context Page</title>
   <meta name="description" content="Géppel olvasható, strukturált összefoglaló a Luxiflow webügynökségről AI crawlerek számára.">
   <meta name="robots" content="index, follow">
+  <meta name="dateModified" content="2026-05-17">
   <link rel="canonical" href="https://luxiflow.io/ai.html">
 
   <script type="application/ld+json">
@@ -13,15 +14,31 @@
     {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
+      "@id": "https://luxiflow.io/#organization",
       "name": "Luxiflow",
       "url": "https://luxiflow.io",
       "email": "hello@luxiflow.io",
       "logo": "https://luxiflow.io/favicon.svg",
       "description": "Magyar prémium webügynökség — villámgyors, AI-keresőkre optimalizált, egyedi weboldalak 14 munkanap alatt, 105 000 Ft-tól.",
+      "foundingDate": "2026",
       "areaServed": { "@type": "Country", "name": "Hungary" },
       "inLanguage": "hu",
       "priceRange": "105 000 – 175 000 HUF",
-      "knowsAbout": ["Webfejlesztés", "UX tervezés", "SEO", "AISO", "React", "Tailwind CSS", "Vite"],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "hello@luxiflow.io",
+        "contactType": "customer service",
+        "availableLanguage": "Hungarian"
+      },
+      "founder": {
+        "@type": "Person",
+        "@id": "https://luxiflow.io/#founder",
+        "name": "Lukács Ádám",
+        "email": "hello@luxiflow.io",
+        "jobTitle": "Alapító, webfejlesztő",
+        "knowsAbout": ["Webfejlesztés", "UX tervezés", "SEO", "AISO", "React", "Tailwind CSS"]
+      },
+      "knowsAbout": ["Webfejlesztés", "UX tervezés", "SEO", "AISO", "React", "TypeScript", "Tailwind CSS", "Vite", "AI Search Optimization"],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Csomagok",
@@ -50,37 +67,62 @@
         {
           "@type": "Question",
           "name": "Mennyi idő alatt készül el a weboldal?",
-          "acceptedAnswer": { "@type": "Answer", "text": "A legtöbb projektet 14 munkanap alatt adjuk át — ez vonatkozik az egyoldalas bemutatkozó oldalra és az összetettebb, többoldalas weboldalakra egyaránt." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Minden projektet 14 munkanap alatt adunk át — ez a maximális határidőnk, amit egyoldalas és többoldalas weboldalnál egyaránt tartunk." }
         },
         {
           "@type": "Question",
           "name": "Mibe kerül egy weboldal a Luxiflow-nál?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Az egyoldalas Bemutatkozó Oldal ára 105 000 Ft, a Növekedési Csomag (akár 5 aloldal, teljes AISO) ára 175 000 Ft. Mindkettő egyszeri projektdíj — nincs havi előfizetés vagy rejtett költség." }
+          "acceptedAnswer": { "@type": "Answer", "text": "A Bemutatkozó Oldal 105 000 Ft, a Növekedési Csomag (akár 5 aloldal, teljes AISO) 175 000 Ft. Mindkettő egyszeri projektdíj — nincs havi előfizetés, nincs meglepetés." }
         },
         {
           "@type": "Question",
           "name": "Mit jelent az AI-optimalizálás (AISO)?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Az AISO (AI Search Optimization) azt jelenti, hogy az oldal struktúráját, tartalmát és technikai felépítését úgy alakítjuk ki, hogy a ChatGPT, Perplexity és Google AI Overview megtalálja, értelmezze és ajánlja, amikor valaki releváns kérdést tesz fel." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Az AISO (AI Search Optimization) azt jelenti, hogy az oldal felépítését és tartalmát úgy alakítjuk ki, hogy a ChatGPT, a Perplexity és a Google AI Overview ajánlja — ha valaki webügynökséget keres, a te neved kerüljön elő a válaszban." }
+        },
+        {
+          "@type": "Question",
+          "name": "Miben különbözik az AISO a hagyományos SEO-tól?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A hagyományos SEO Google keresési találatokra optimalizál. Az AISO az AI-alapú keresőkre fókuszál: strukturált adatok, kérdés-válasz formátum és géppel olvasható összefoglalók segítségével." }
         },
         {
           "@type": "Question",
           "name": "Miért nem használtok WordPress-t vagy Wix-et?",
-          "acceptedAnswer": { "@type": "Answer", "text": "A sablonos megoldások lassabbak, nehezebbek karbantartani, és minden más hasonló oldalra hasonlítanak. A Luxiflow nulláról, modern technológiával (React, Vite, Tailwind CSS) fejleszt — ez villámgyors betöltést, egyedi megjelenést és hosszabb élettartamot jelent." }
+          "acceptedAnswer": { "@type": "Answer", "text": "A sablonos megoldások lassúak, nehezen karbantarthatók, és minden más hasonló oldalra hasonlítanak. Mi nulláról, modern technológiával fejlesztünk — villámgyors betöltési sebességgel, teljesen egyedi megjelenéssel." }
         },
         {
           "@type": "Question",
           "name": "Kell-e domain vagy tárhely a csomaghoz?",
-          "acceptedAnswer": { "@type": "Answer", "text": "A domain és a tárhely nem része a csomagoknak, de segítünk kiválasztani és beállítani. Általában évi 5 000–15 000 Ft közötti összegről van szó." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Nem, a domain és a tárhely nem része a csomagnak — de segítünk kiválasztani és beállítani. Általában évi 5 000–15 000 Ft közötti összegről van szó." }
         },
         {
           "@type": "Question",
-          "name": "Mi van, ha változtatni szeretnék az átadás után?",
-          "acceptedAnswer": { "@type": "Answer", "text": "A Növekedési csomag technikai garanciát tartalmaz — az első kisebb módosításokat elvégezzük. Nagyobb változtatásoknál külön, előre egyeztetett óradíjban dolgozunk." }
+          "name": "Mi van, ha módosítani szeretnék az átadás után?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A Növekedési csomag technikai garanciát tartalmaz — a kisebb módosításokat elvégezzük. Nagyobb változtatások esetén előre egyeztetett óradíjban dolgozunk." }
         },
         {
           "@type": "Question",
-          "name": "Magyar KKV-knak ajánlott a Luxiflow?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Igen, a Luxiflow elsősorban magyar kis- és középvállalkozásoknak, freelancereknek és helyi szolgáltatóknak készít weboldalakat, akik gyorsan, átlátható áron szeretnének prémium online megjelenést." }
+          "name": "Milyen technológiával készülnek az oldalak?",
+          "acceptedAnswer": { "@type": "Answer", "text": "React 19, TypeScript és Vite 6 alapokon dolgozunk, Tailwind CSS 4 stílusozással. Ez garantálja a villámgyors betöltést, a modern megjelenést és a hosszú távú karbantarthatóságot." }
+        },
+        {
+          "@type": "Question",
+          "name": "Garantált-e, hogy az AI-keresők ajánlani fogják az oldalt?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A technikai feltételeket mi megteremtjük — strukturált adatok, llms.txt, szemantikus felépítés. Az AI modellek algoritmusa folyamatosan változik, de az általunk alkalmazott megközelítés a legjobb ismert módszereket követi." }
+        },
+        {
+          "@type": "Question",
+          "name": "Magyar cégeknek ajánlott a Luxiflow?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Igen, a Luxiflow elsősorban magyar KKV-knak, helyi szolgáltatóknak és freelancereknek készít weboldalakat, akik modern, gyors és AI-keresőkre optimalizált megjelenést szeretnének átlátható áron." }
+        },
+        {
+          "@type": "Question",
+          "name": "Hogyan zajlik az együttműködés?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Négy lépésből áll: Megismerés (célok és piac felmérése), Tervezés (szerkezet és vizuális irány), Fejlesztés (nulláról, egyedi kóddal), Átadás (kész, optimalizált oldal 14 munkanap alatt)." }
+        },
+        {
+          "@type": "Question",
+          "name": "Fizethetek részletekben?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A fizetési feltételekről az együttműködés elején egyeztetünk. Jellemzően a projektdíj felét az induláskor, másik felét az átadáskor kérjük." }
         }
       ]
     }
@@ -177,12 +219,12 @@
 
 <h2>Technológia</h2>
 <ul>
-  <li>React 18, TypeScript</li>
+  <li>React 19, TypeScript</li>
   <li>Vite 6</li>
   <li>Tailwind CSS 4</li>
-  <li>Framer Motion (motion/react v12)</li>
+  <li>Motion v12 (motion/react)</li>
   <li>EmailJS (kapcsolatfelvételi forma backend nélkül)</li>
-  <li>JSON-LD schema.org (Organization, Service, FAQPage)</li>
+  <li>JSON-LD schema.org (ProfessionalService, WebSite, FAQPage)</li>
   <li>llms.txt szabvány</li>
   <li>WCAG 2.1 AA akadálymentesítés</li>
 </ul>
@@ -227,7 +269,7 @@
 </details>
 <details>
   <summary>Milyen technológiával készülnek az oldalak?</summary>
-  <p>React, TypeScript és Vite alapokon dolgozunk, Tailwind CSS stílusozással. Ez garantálja a villámgyors betöltést, a modern megjelenést és a hosszú távú karbantarthatóságot.</p>
+  <p>React 19, TypeScript és Vite 6 alapokon dolgozunk, Tailwind CSS 4 stílusozással. Ez garantálja a villámgyors betöltést, a modern megjelenést és a hosszú távú karbantarthatóságot.</p>
 </details>
 <details>
   <summary>Garantált-e, hogy az AI-keresők ajánlani fogják az oldalt?</summary>
@@ -255,7 +297,7 @@
 </address>
 
 <hr>
-<p class="meta">Utoljára frissítve: 2026. május &nbsp;|&nbsp; <a href="/llms.txt">llms.txt</a> &nbsp;|&nbsp; <a href="https://luxiflow.io">Főoldal</a></p>
+<p class="meta">Utoljára frissítve: 2026. május 17. &nbsp;|&nbsp; <a href="/llms.txt">llms.txt</a> &nbsp;|&nbsp; <a href="https://luxiflow.io">Főoldal</a></p>
 
 </body>
 </html>
